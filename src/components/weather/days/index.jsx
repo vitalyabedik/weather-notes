@@ -1,12 +1,8 @@
-import SelectorForecast from "./selectorForecast";
-import DailyList from "./dailyForecast/dailyList";
-import HourlyList from "./hourlyForecast/hourlyList";
+import DailyForecast from "./dailyForecast/dailyList";
 
 const DaysForecast = () => (
   <div>
-    <SelectorForecast />
-    <DailyList />
-    <HourlyList />
+    <DailyForecast />
   </div>
 );
 

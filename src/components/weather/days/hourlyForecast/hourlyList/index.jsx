@@ -1,7 +1,12 @@
 import HourlyItem from "../hourlyItem";
 
 const HourlyList = () => (
-  <div>
+  <div className="hourlyForecast__list">
+    <HourlyItem />
+    <HourlyItem />
+    <HourlyItem />
+    <HourlyItem />
+    <HourlyItem />
     <HourlyItem />
     <HourlyItem />
   </div>

@@ -1,9 +1,12 @@
-import Weather from "../components/weather";
 import "./App.scss";
 
+import Weather from "../components/weather";
+
 const App = () => (
-  <div className="App">
-    <Weather />
+  <div className="wrapper">
+    <div className="container">
+      <Weather />
+    </div>
   </div>
 );
 

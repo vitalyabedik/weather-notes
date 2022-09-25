@@ -1,0 +1,22 @@
+.ant-tabs-top > .ant-tabs-nav::before {
+  border-bottom: none;
+}
+
+// .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active,
+// .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab-active {
+//   background: #2e3041;
+// }
+
+.dailyForecast,
+.hourlyForecast {
+  &__item {
+    text-align: center;
+  }
+
+  //   &__list {
+  //     display: flex;
+  //     flex-direction: row;
+  //     justify-content: center;
+  //     align-items: center;
+  //   }
+}
