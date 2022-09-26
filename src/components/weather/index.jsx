@@ -6,19 +6,21 @@ import TodayForecast from "./todayForecast";
 import DaysForecast from "./days";
 
 const Weather = () => (
-  <div className={styles.weather}>
-    {/* <TodayForecast />
+  <div className="container">
+    <div className={styles.weather}>
+      {/* <TodayForecast />
 
     <DaysForecast /> */}
 
-    <Row align="middle">
-      <Col span={6}>
-        <TodayForecast />
-      </Col>
-      <Col span={18}>
-        <DaysForecast />
-      </Col>
-    </Row>
+      <Row align="middle">
+        <Col span={6}>
+          <TodayForecast />
+        </Col>
+        <Col span={18}>
+          <DaysForecast />
+        </Col>
+      </Row>
+    </div>
   </div>
 );
 

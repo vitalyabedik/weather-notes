@@ -17,8 +17,8 @@ const TodayForecast = () => (
       cover={
         <img
           style={{
-            width: 90,
-            height: 90,
+            width: 100,
+            height: 100,
           }}
           alt="example"
           src="https://cdn-icons-png.flaticon.com/512/5247/5247971.png"

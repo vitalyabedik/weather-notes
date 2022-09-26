@@ -1,12 +1,12 @@
 import "./App.scss";
 
 import Weather from "../components/weather";
+import ActionPanel from "../components/actionPanel";
 
 const App = () => (
   <div className="wrapper">
-    <div className="container">
-      <Weather />
-    </div>
+    <ActionPanel />
+    <Weather />
   </div>
 );
 

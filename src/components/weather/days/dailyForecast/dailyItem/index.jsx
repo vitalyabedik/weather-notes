@@ -6,6 +6,8 @@ const DailyItem = () => (
   <div className="dailyForecast__item">
     <Card
       style={{
+        display: "flex",
+        justifyContent: "center",
         backgroundColor: "#434554",
         textAlign: "center",
       }}
@@ -13,26 +15,29 @@ const DailyItem = () => (
     >
       <Tag
         style={{
-          borderRadius: 10,
-          marginRight: 0,
+          borderRadius: 13,
           backgroundColor: "#2e3041",
           border: "none",
           color: "white",
+          marginRight: 0,
+
+          fontSize: 14,
+          padding: 7,
         }}
       >
-        Thu
+        Wednesday
       </Tag>
 
       <img
         style={{
           width: 40,
-          paddingTop: 20,
-          paddingBottom: 10,
+          paddingTop: 15,
+          paddingBottom: 15,
         }}
-        alt="example"
+        alt="weather"
         src="https://cdn-icons-png.flaticon.com/512/5247/5247971.png"
       />
-      <Title style={{ color: "white" }} level={3}>
+      <Title style={{ color: "white" }} level={2}>
         12&deg;
       </Title>
     </Card>
