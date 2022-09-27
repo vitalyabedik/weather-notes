@@ -1,8 +1,10 @@
-import DailyForecast from "./dailyForecast/dailyList";
+import DailyForecast from "./dailyForecast";
+// import HourlyForecast from "./hourlyForecast";
 
 const DaysForecast = () => (
   <div>
     <DailyForecast />
+    {/* <HourlyForecast /> */}
   </div>
 );
 
