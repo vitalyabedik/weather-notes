@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import OpenModal from "../createCalendarEvent/openModal";
+import OpenModal from "../openModal";
 
 const OpenNote = () => (
   <div>

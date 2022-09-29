@@ -3,6 +3,17 @@ import { useState } from "react";
 import { Calendar } from "antd";
 import moment from "moment";
 
+moment.updateLocale("en", {
+  week: {
+    dow: 1,
+    doy: 7,
+  },
+});
+
+moment.updateLocale("en", {
+  weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+});
+
 const CalendarEvent = () => {
   const [value, setValue] = useState(moment("2022-09-28"));
   const [selectedValue, setSelectedValue] = useState(moment("2022-09-28"));
@@ -17,6 +28,11 @@ const CalendarEvent = () => {
     setValue(newValue.i);
   };
 
+  // const clickOnButton = (e) => {
+  //   e.stopPropagation();
+  //   alert("Clicked on button!");
+  // };
+
   return (
     <div>
       <Calendar
@@ -24,6 +40,7 @@ const CalendarEvent = () => {
         onSelect={onSelect}
         onPanelChange={onPanelChange}
       />
+      {/* <Button onClick={clickOnButton}>Click Me</Button>; */}
     </div>
   );
 };
