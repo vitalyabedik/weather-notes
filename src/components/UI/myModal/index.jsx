@@ -1,38 +1,34 @@
-import { useState } from "react";
-
 import { Button, Modal } from "antd";
 
-const OpenModal = ({ component, title }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+const MyModal = ({ children, title, visible, setVisible }) => {
   const showModal = () => {
-    setIsModalOpen(true);
+    setVisible(true);
   };
 
   const handleOk = () => {
-    setIsModalOpen(false);
+    setVisible(false);
   };
 
   const handleCancel = () => {
-    setIsModalOpen(false);
+    setVisible(false);
   };
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
+      <Button type="primary" onClick={() => showModal()}>
         Open {title}
       </Button>
       <Modal
         title={title}
-        open={isModalOpen}
+        open={visible}
         onOk={handleOk}
         onCancel={handleCancel}
         width={1000}
       >
-        {component}
+        {children}
       </Modal>
     </>
   );
 };
 
-export default OpenModal;
+export default MyModal;

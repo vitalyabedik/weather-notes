@@ -4,7 +4,7 @@ const { Search } = Input;
 
 // const onSearch = (value) => console.log(value);
 
-const SearchLocation = () => (
+const MySearch = () => (
   <div>
     {" "}
     <Search
@@ -18,4 +18,4 @@ const SearchLocation = () => (
   </div>
 );
 
-export default SearchLocation;
+export default MySearch;

@@ -1,7 +1,9 @@
-import OpenModal from "./openModal";
+import { MyModal } from "../../UI";
 import CalendarEvent from "./calendarEvent";
 
-const CreateCalendarEvent = () => (
-  <OpenModal component={<CalendarEvent />} title="Calendar" />
+const CreateCalendarEvent = ({ visible, setVisible }) => (
+  <MyModal title="Calendar" visible={visible} setVisible={setVisible}>
+    <CalendarEvent />{" "}
+  </MyModal>
 );
 export default CreateCalendarEvent;
