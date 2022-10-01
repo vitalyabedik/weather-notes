@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 
-const MyModal = ({ children, title, visible, setVisible }) => {
+const MyModal = ({ children, title, visible, setVisible, width }) => {
   const showModal = () => {
     setVisible(true);
   };
@@ -23,7 +23,7 @@ const MyModal = ({ children, title, visible, setVisible }) => {
         open={visible}
         onOk={handleOk}
         onCancel={handleCancel}
-        width={1000}
+        width={width}
       >
         {children}
       </Modal>

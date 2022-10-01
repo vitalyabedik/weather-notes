@@ -1,16 +1,22 @@
 import { useState } from "react";
 
-import { MyModal } from "../../../UI";
-import NoteItemsModal from "./noteItemsModal";
+import { Divider } from "antd";
 
-const NoteModal = () => {
+import { MyModal } from "../../../UI";
+import NoteForm from "./NoteForm";
+import NoteList from "./NoteList";
+
+const Note = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
     <MyModal title="Note" visible={isVisible} setVisible={setIsVisible}>
-      <NoteItemsModal />
+      <Divider plain>Note item</Divider>
+      <NoteForm />
+      <Divider plain>Notes list</Divider>
+      <NoteList />
     </MyModal>
   );
 };
 
-export default NoteModal;
+export default Note;

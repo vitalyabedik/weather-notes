@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["airbnb", "prettier", "plugin:react/jsx-runtime"],
+  "extends": [ "eslint:recommended", "plugin:react/recommended", "airbnb", "prettier", "plugin:react/jsx-runtime"],
   "overrides": [],
   "parserOptions": {
     "ecmaFeatures": {
@@ -20,6 +20,8 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-unused-vars": "warn"
   }
 }
