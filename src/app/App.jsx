@@ -1,12 +1,10 @@
 import "./App.scss";
 
-import Weather from "../components/weather";
-import ActionPanel from "../components/actionPanel";
+import AppLayout from "../components/layout";
 
 const App = () => (
-  <div className="wrapper">
-    <ActionPanel />
-    <Weather />
+  <div>
+    <AppLayout />
   </div>
 );
 

@@ -2,7 +2,7 @@ import { Input } from "antd";
 
 const { Search } = Input;
 
-// const onSearch = (value) => console.log(value);
+const onSearch = (value) => console.log(value);
 
 const MySearch = () => (
   <div>
@@ -10,9 +10,9 @@ const MySearch = () => (
     <Search
       placeholder="Enter a city..."
       allowClear
-      //   onSearch={onSearch}
+      onSearch={onSearch}
       style={{
-        width: 250,
+        width: 300,
       }}
     />
   </div>
