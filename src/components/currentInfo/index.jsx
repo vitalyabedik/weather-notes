@@ -4,8 +4,11 @@ import TodayInfo from "./todayInfo";
 import LocationInfo from "./locationInfo";
 
 const CurrentInfo = () => (
-  <div className="container" style={{ marginTop: 100, marginBottom: 100 }}>
-    <Row justify="space-between">
+  <div
+    className="container"
+    style={{ marginTop: 100, marginBottom: 100, background: "none" }}
+  >
+    <Row justify="space-between" align="middle">
       <Col>
         <TodayInfo />
       </Col>

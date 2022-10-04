@@ -26,7 +26,7 @@ const ActionPanel = () => {
         <Col>
           <Space size={8}>
             <CreateCalendarEvent visible={visible} setVisible={setVisible} />
-            <MySwitch checked="Day" unChecked="Hour" />
+            <MySwitch checked="Daily" unChecked="Hourly" />
             <MySwitch checked="FirstAPI" unChecked="SecondAPI" />
           </Space>
         </Col>

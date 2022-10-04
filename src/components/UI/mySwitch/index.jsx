@@ -5,6 +5,7 @@ const MySwitch = ({ checked, unChecked }) => (
     checkedChildren={checked}
     unCheckedChildren={unChecked}
     defaultChecked
+    style={{ width: 90 }}
   />
 );
 
