@@ -6,7 +6,7 @@ import LocationInfo from "./locationInfo";
 const CurrentInfo = () => (
   <div
     className="container"
-    style={{ marginTop: 100, marginBottom: 100, background: "none" }}
+    style={{ marginTop: 50, marginBottom: 50, background: "none" }}
   >
     <Row justify="space-between" align="middle">
       <Col>

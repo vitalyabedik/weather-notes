@@ -7,7 +7,7 @@ import CreateCalendarEvent from "./createCalendarEvent";
 
 const { Title } = Typography;
 
-const ActionPanel = () => {
+const ActionPanel = ({ changeForecastOption }) => {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -26,7 +26,11 @@ const ActionPanel = () => {
         <Col>
           <Space size={8}>
             <CreateCalendarEvent visible={visible} setVisible={setVisible} />
-            <MySwitch checked="Daily" unChecked="Hourly" />
+            <MySwitch
+              checked="Daily"
+              unChecked="Hourly"
+              onChange={() => changeForecastOption(true)}
+            />
             <MySwitch checked="FirstAPI" unChecked="SecondAPI" />
           </Space>
         </Col>

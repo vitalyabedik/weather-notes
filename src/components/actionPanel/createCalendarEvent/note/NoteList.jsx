@@ -1,5 +1,6 @@
 import { List } from "antd";
-import NoteItem from "./NoteItem";
+
+import { MyListItem } from "../../../UI";
 
 const NoteList = () => {
   const notes = [
@@ -10,13 +11,14 @@ const NoteList = () => {
     { text: "Start learning", time: "19:20" },
     { text: "Go sleep", time: "23:20" },
   ];
+
   return (
     <div>
       <List
         dataSource={notes}
         renderItem={(item) => (
-          <List.Item>
-            <NoteItem note={item} />
+          <List.Item style={{ borderBottom: "none" }}>
+            <MyListItem item={item} showItemsActions />
           </List.Item>
         )}
       />
