@@ -8,10 +8,10 @@ import Weather from "../weather";
 import CurrentEvent from "../currentEvent";
 
 const AppLayout = () => {
-  const [showDailyForecast, setShowDailyForecast] = useState(true);
+  const [isDailyForecast, setIsDailyForecast] = useState(true);
 
   const changeForecastOption = (value) => {
-    setShowDailyForecast(!value);
+    setIsDailyForecast(!value);
   };
 
   return (
@@ -19,12 +19,15 @@ const AppLayout = () => {
       <div style={{ margin: 20 }}>
         {" "}
         <header>
-          <ActionPanel changeForecastOption={changeForecastOption} />
+          <ActionPanel
+            isDailyForecast={isDailyForecast}
+            changeForecastOption={changeForecastOption}
+          />
         </header>{" "}
         <main>
           <CurrentInfo />
           <CurrentEvent />
-          <Weather showDailyForecast={showDailyForecast} />
+          <Weather isDailyForecast={isDailyForecast} />
         </main>
       </div>
     </div>

@@ -6,19 +6,15 @@ import TodayForecast from "./todayForecast";
 import DaysForecast from "./days";
 import HourlyForecast from "./days/hourlyForecast";
 
-const Weather = ({ showDailyForecast }) => (
+const Weather = ({ isDailyForecast }) => (
   <div className="container">
     <div className={styles.weather}>
-      {/* <TodayForecast />
-
-    <DaysForecast /> */}
-
       <Row align="middle">
         <Col span={6}>
           <TodayForecast />
         </Col>
         <Col span={18}>
-          {showDailyForecast ? <DaysForecast /> : <HourlyForecast />}
+          {isDailyForecast ? <DaysForecast /> : <HourlyForecast />}
         </Col>
       </Row>
     </div>

@@ -1,13 +1,11 @@
 import { useState } from "react";
 
-import { Space, Col, Row, Typography } from "antd";
+import { Space, Col, Row } from "antd";
 
 import { MySearch, MySwitch } from "../UI";
 import CreateCalendarEvent from "./createCalendarEvent";
 
-const { Title } = Typography;
-
-const ActionPanel = ({ changeForecastOption }) => {
+const ActionPanel = ({ isDailyForecast, changeForecastOption }) => {
   const [visible, setVisible] = useState(false);
 
   return (
@@ -29,7 +27,7 @@ const ActionPanel = ({ changeForecastOption }) => {
             <MySwitch
               checked="Daily"
               unChecked="Hourly"
-              onChange={() => changeForecastOption(true)}
+              onChange={() => changeForecastOption(isDailyForecast)}
             />
             <MySwitch checked="FirstAPI" unChecked="SecondAPI" />
           </Space>
