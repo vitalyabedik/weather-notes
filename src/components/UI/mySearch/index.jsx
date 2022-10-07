@@ -12,7 +12,7 @@ const MySearch = () => (
       allowClear
       onSearch={onSearch}
       style={{
-        width: 300,
+        width: 240,
       }}
     />
   </div>

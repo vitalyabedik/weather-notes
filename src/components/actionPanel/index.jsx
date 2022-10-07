@@ -13,15 +13,11 @@ const ActionPanel = ({ isDailyForecast, changeForecastOption }) => {
       className="container"
       style={{ backgroundColor: "#434554", padding: 16 }}
     >
-      <Row
-        justify="space-between"
-        gutter={[16, 16]}
-        style={{ textAlign: "center" }}
-      >
-        <Col>
-          <MySearch />
+      <Row justify="space-around" gutter={[16, 16]}>
+        <Col sm={12}>
+          <MySearch style={{ textAlign: "left" }} />
         </Col>
-        <Col>
+        <Col sm={12} style={{ textAlign: "right" }}>
           <Space size={8}>
             <CreateCalendarEvent visible={visible} setVisible={setVisible} />
             <MySwitch

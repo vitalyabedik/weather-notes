@@ -17,7 +17,6 @@ const AppLayout = () => {
   return (
     <div className="wrapper">
       <div style={{ margin: 20 }}>
-        {" "}
         <header>
           <ActionPanel
             isDailyForecast={isDailyForecast}

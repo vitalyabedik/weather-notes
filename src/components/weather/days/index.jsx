@@ -1,11 +1,8 @@
 import DailyForecast from "./dailyForecast";
-// import HourlyForecast from "./hourlyForecast";
+import HourlyForecast from "./hourlyForecast";
 
-const DaysForecast = () => (
-  <div>
-    <DailyForecast />
-    {/* <HourlyForecast /> */}
-  </div>
+const DaysForecast = ({ isDailyForecast }) => (
+  <div>{isDailyForecast ? <DailyForecast /> : <HourlyForecast />}</div>
 );
 
 export default DaysForecast;

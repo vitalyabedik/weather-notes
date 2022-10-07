@@ -1,6 +1,15 @@
 import { Button, Modal } from "antd";
 
-const MyModal = ({ children, title, visible, setVisible, width, icon }) => {
+const MyModal = ({
+  children,
+  title,
+  visible,
+  setVisible,
+  width,
+  type,
+  icon,
+  ghost,
+}) => {
   const showModal = () => {
     setVisible(true);
   };
@@ -15,10 +24,11 @@ const MyModal = ({ children, title, visible, setVisible, width, icon }) => {
 
   return (
     <>
-      <Button type="primary" icon={icon} onClick={() => showModal()}>
+      <Button ghost={ghost} type={type} icon={icon} onClick={() => showModal()}>
         {title}
       </Button>
       <Modal
+        type={type}
         title={title}
         open={visible}
         onOk={handleOk}

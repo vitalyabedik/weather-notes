@@ -4,7 +4,6 @@ import styles from "./Weather.module.scss";
 
 import TodayForecast from "./todayForecast";
 import DaysForecast from "./days";
-import HourlyForecast from "./days/hourlyForecast";
 
 const Weather = ({ isDailyForecast }) => (
   <div className="container">
@@ -14,7 +13,7 @@ const Weather = ({ isDailyForecast }) => (
           <TodayForecast />
         </Col>
         <Col span={18}>
-          {isDailyForecast ? <DaysForecast /> : <HourlyForecast />}
+          <DaysForecast isDailyForecast={isDailyForecast} />
         </Col>
       </Row>
     </div>

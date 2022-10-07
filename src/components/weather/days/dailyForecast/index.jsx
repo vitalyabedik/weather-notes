@@ -38,7 +38,7 @@ const DailyForecast = () => {
 
   return (
     <div className="dailyForecast__list">
-      <Row justify="space-around">
+      <Row justify="space-evenly">
         {items.map((item) => (
           <Col span={3}>
             <div>

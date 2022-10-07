@@ -4,11 +4,12 @@ import CalendarEvent from "./calendarEvent";
 
 const CreateCalendarEvent = ({ visible, setVisible }) => (
   <MyModal
-    title="Open calendar"
+    // title="Open calendar"
+    type="text"
     visible={visible}
     setVisible={setVisible}
     width={1000}
-    icon={<CalendarOutlined />}
+    icon={<CalendarOutlined style={{ color: "white" }} />}
   >
     <CalendarEvent />{" "}
   </MyModal>
