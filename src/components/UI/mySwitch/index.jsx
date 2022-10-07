@@ -5,7 +5,7 @@ const MySwitch = ({ checked, unChecked, onChange }) => (
     checkedChildren={checked}
     unCheckedChildren={unChecked}
     defaultChecked
-    onChange={(value) => onChange(value)}
+    onChange={() => onChange()}
     style={{ width: 90 }}
   />
 );

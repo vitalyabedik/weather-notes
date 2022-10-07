@@ -10,18 +10,15 @@ import CurrentEvent from "../currentEvent";
 const AppLayout = () => {
   const [isDailyForecast, setIsDailyForecast] = useState(true);
 
-  const changeForecastOption = (value) => {
-    setIsDailyForecast(!value);
+  const changeForecastOption = () => {
+    setIsDailyForecast(!isDailyForecast);
   };
 
   return (
     <div className="wrapper">
       <div style={{ margin: 20 }}>
         <header>
-          <ActionPanel
-            isDailyForecast={isDailyForecast}
-            changeForecastOption={changeForecastOption}
-          />
+          <ActionPanel changeForecastOption={changeForecastOption} />
         </header>{" "}
         <main>
           <CurrentInfo />
