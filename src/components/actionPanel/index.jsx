@@ -1,11 +1,16 @@
 import { useState } from "react";
 
-import { Space, Col, Row } from "antd";
+import { Grid, Space, Col, Row } from "antd";
 
 import { MySearch, MySwitch } from "../UI";
 import CreateCalendarEvent from "./createCalendarEvent";
 
+const { useBreakpoint } = Grid;
+
 const ActionPanel = ({ changeForecastOption }) => {
+  const screens = useBreakpoint();
+  const isMobile = screens.xs;
+
   const [visible, setVisible] = useState(false);
 
   return (
@@ -14,10 +19,15 @@ const ActionPanel = ({ changeForecastOption }) => {
       style={{ backgroundColor: "#434554", padding: 16 }}
     >
       <Row justify="space-around" gutter={[16, 16]}>
-        <Col sm={12}>
+        <Col xs={24} sm={12} md={8}>
           <MySearch style={{ textAlign: "left" }} />
         </Col>
-        <Col sm={12} style={{ textAlign: "right" }}>
+        <Col
+          xs={24}
+          sm={12}
+          md={16}
+          style={{ textAlign: isMobile ? "center" : "right" }}
+        >
           <Space size={8}>
             <CreateCalendarEvent visible={visible} setVisible={setVisible} />
             <MySwitch

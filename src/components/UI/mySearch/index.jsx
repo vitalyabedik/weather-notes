@@ -7,14 +7,7 @@ const onSearch = (value) => console.log(value);
 const MySearch = () => (
   <div>
     {" "}
-    <Search
-      placeholder="Enter a city..."
-      allowClear
-      onSearch={onSearch}
-      style={{
-        width: 240,
-      }}
-    />
+    <Search placeholder="Enter a city..." allowClear onSearch={onSearch} />
   </div>
 );
 

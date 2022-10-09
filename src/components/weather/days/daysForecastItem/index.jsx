@@ -44,7 +44,7 @@ const DaysForecastItem = ({ info, icon, temperature }) => (
         {" "}
         <Col>
           {" "}
-          <Title style={{ color: "white", marginBottom: 0 }} level={3}>
+          <Title style={{ color: "white", marginBottom: 0 }} level={4}>
             {temperature}&deg;
           </Title>
         </Col>
