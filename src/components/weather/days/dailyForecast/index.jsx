@@ -40,7 +40,7 @@ const DailyForecast = () => {
     <div className="dailyForecast__list">
       <Row justify="space-evenly">
         {items.map((item) => (
-          <Col span={3}>
+          <Col xs={8} sm={8} md={4}>
             <div>
               <DaysForecastItem
                 key={item.tag}

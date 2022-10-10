@@ -31,7 +31,7 @@ const DaysForecastItem = ({ info, icon, temperature }) => (
           {" "}
           <img
             style={{
-              width: 45,
+              width: 40,
               paddingTop: 15,
               paddingBottom: 15,
             }}

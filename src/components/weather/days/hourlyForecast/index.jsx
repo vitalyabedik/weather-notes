@@ -33,11 +33,11 @@ const items = [
     icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
     temperature: 10,
   },
-  {
-    tag: "06:00",
-    icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
-    temperature: 10,
-  },
+  // {
+  //   tag: "06:00",
+  //   icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
+  //   temperature: 10,
+  // },
   // {
   //   tag: "07:00",
   //   icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
@@ -114,7 +114,7 @@ const HourlyForecast = () => (
   <div className="dailyForecast__list">
     <Row justify="space-around">
       {items.map((item) => (
-        <Col span={3}>
+        <Col xs={8} sm={8} md={4}>
           <div>
             <DaysForecastItem
               key={item.tag}
