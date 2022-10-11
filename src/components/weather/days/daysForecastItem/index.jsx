@@ -18,7 +18,6 @@ const DaysForecastItem = ({ info, icon, temperature }) => (
               borderRadius: 10,
               backgroundColor: "#2e3041",
               border: "none",
-              color: "white",
               marginRight: 0,
             }}
           >
@@ -44,9 +43,7 @@ const DaysForecastItem = ({ info, icon, temperature }) => (
         {" "}
         <Col>
           {" "}
-          <Title style={{ color: "white", marginBottom: 0 }} level={4}>
-            {temperature}&deg;
-          </Title>
+          <Title level={4}>{temperature}&deg;</Title>
         </Col>
       </Row>
     </Card>

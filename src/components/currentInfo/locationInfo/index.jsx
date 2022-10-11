@@ -12,16 +12,12 @@ const LocationInfo = () => {
       {" "}
       <Row justify={isMobile ? "center" : "end"}>
         <Col>
-          <Title style={{ color: "white" }} level={3}>
-            Soligorsk
-          </Title>
+          <Title level={3}>Soligorsk</Title>
         </Col>
       </Row>
       <Row justify={isMobile ? "center" : "end"} align="middle">
         <Col>
-          <Title level={4} style={{ color: "white" }}>
-            Belarus
-          </Title>
+          <Title level={4}>Belarus</Title>
         </Col>
       </Row>
     </>

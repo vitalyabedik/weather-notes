@@ -35,7 +35,6 @@ const TodayForecast = () => {
                 borderRadius: 15,
                 fontSize: 14,
                 padding: 8,
-                color: "white",
                 background: "#2e3041",
                 border: "none",
               }}
@@ -45,15 +44,7 @@ const TodayForecast = () => {
           </Col>
           <Col span={24}>
             {" "}
-            <Title
-              style={{
-                color: "white",
-                margin: 0,
-              }}
-              level={2}
-            >
-              12&deg;
-            </Title>
+            <Title level={2}>12&deg;</Title>
           </Col>
         </Row>
       </Row>

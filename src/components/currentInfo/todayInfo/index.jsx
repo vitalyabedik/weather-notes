@@ -11,21 +11,15 @@ const TodayInfo = () => {
     <>
       <Row justify={isMobile && "center"} gutter={[8]} align="middle">
         <Col>
-          <Title style={{ color: "white" }} level={1}>
-            12:30
-          </Title>
+          <Title level={1}>12:30</Title>
         </Col>
         <Col>
-          <Title style={{ color: "white" }} level={4}>
-            PM
-          </Title>
+          <Title level={4}>PM</Title>
         </Col>
       </Row>
       <Row justify={isMobile && "center"}>
         <Col>
-          <Title level={4} style={{ color: "white" }}>
-            Monday, 3 October 2022
-          </Title>
+          <Title level={4}>Monday, 3 October 2022</Title>
         </Col>
       </Row>
     </>
