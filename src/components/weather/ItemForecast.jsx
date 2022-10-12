@@ -2,7 +2,7 @@ import { Typography, Card, Tag, Row, Col } from "antd";
 
 const { Title } = Typography;
 
-const DaysForecastItem = ({ info, icon, temperature }) => (
+const ItemForecast = ({ info, icon, temperature }) => (
   <div className="dailyForecast__item">
     <Card
       style={{
@@ -50,4 +50,4 @@ const DaysForecastItem = ({ info, icon, temperature }) => (
   </div>
 );
 
-export default DaysForecastItem;
+export default ItemForecast;

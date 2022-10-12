@@ -1,4 +1,5 @@
 @import "~antd/dist/antd.css";
+@import "../assets/styles/index.scss";
 
 .wrapper {
   height: 100vh;
@@ -12,10 +13,10 @@
   position: absolute;
 
   .ant-typography {
-    color: green;
+    color: $white;
   }
 
   .ant-tag {
-    color: red;
+    color: $white;
   }
 }

@@ -1,6 +1,6 @@
 import { List } from "antd";
 
-import { MyListItem } from "../../../UI";
+import { MyListItem } from "../UI";
 
 const NoteList = () => {
   const notes = [

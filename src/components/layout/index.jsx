@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./AppLayout.module.scss";
 
-import ActionPanel from "../actionPanel";
+import Header from "../header";
 import CurrentInfo from "../currentInfo";
 import Weather from "../weather";
 import CurrentEvent from "../currentEvent";
@@ -18,7 +18,7 @@ const AppLayout = () => {
     <div className="wrapper">
       <div style={{ margin: 20 }}>
         <header>
-          <ActionPanel changeForecastOption={changeForecastOption} />
+          <Header changeForecastOption={changeForecastOption} />
         </header>{" "}
         <main>
           <CurrentInfo />

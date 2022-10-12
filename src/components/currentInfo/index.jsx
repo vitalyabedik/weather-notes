@@ -1,7 +1,7 @@
 import { Row, Col } from "antd";
 
-import TodayInfo from "./todayInfo";
-import LocationInfo from "./locationInfo";
+import TodayInfo from "./TodayInfo";
+import LocationInfo from "./LocationInfo";
 
 const CurrentInfo = () => (
   <div

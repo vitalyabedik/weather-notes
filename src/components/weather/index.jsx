@@ -2,8 +2,9 @@ import { Col, Row } from "antd";
 
 import styles from "./Weather.module.scss";
 
-import TodayForecast from "./todayForecast";
-import DaysForecast from "./days";
+import TodayForecast from "./TodayForecast";
+import DailyForecast from "./DailyForecast";
+import HourlyForecast from "./HourlyForecast";
 
 const Weather = ({ isDailyForecast }) => (
   <div className="container">
@@ -13,7 +14,7 @@ const Weather = ({ isDailyForecast }) => (
           <TodayForecast />
         </Col>
         <Col xs={24} sm={16} md={18} lg={19} xl={20}>
-          <DaysForecast isDailyForecast={isDailyForecast} />
+          <div>{isDailyForecast ? <DailyForecast /> : <HourlyForecast />}</div>
         </Col>
       </Row>
     </div>

@@ -1,6 +1,6 @@
 import { Col, Row } from "antd";
 
-import DaysForecastItem from "../daysForecastItem";
+import ItemForecast from "./ItemForecast";
 
 const DailyForecast = () => {
   const items = [
@@ -42,7 +42,7 @@ const DailyForecast = () => {
         {items.map((item) => (
           <Col xs={8} sm={8} md={4}>
             <div>
-              <DaysForecastItem
+              <ItemForecast
                 key={item.tag}
                 info={item.tag}
                 icon={item.icon}

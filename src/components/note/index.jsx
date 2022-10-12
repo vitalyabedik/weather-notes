@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Divider } from "antd";
 
 import { FileDoneOutlined } from "@ant-design/icons";
-import { MyModal } from "../../../UI";
+import { MyModal } from "../UI";
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
 

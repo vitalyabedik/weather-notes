@@ -3,11 +3,11 @@ import { useState } from "react";
 import { Grid, Space, Col, Row } from "antd";
 
 import { MySearch, MySwitch } from "../UI";
-import CreateCalendarEvent from "./createCalendarEvent";
+import Calendar from "../calendar";
 
 const { useBreakpoint } = Grid;
 
-const ActionPanel = ({ changeForecastOption }) => {
+const Header = ({ changeForecastOption }) => {
   const screens = useBreakpoint();
   const isMobile = screens.xs;
 
@@ -29,7 +29,7 @@ const ActionPanel = ({ changeForecastOption }) => {
           style={{ textAlign: isMobile ? "center" : "right" }}
         >
           <Space size={8}>
-            <CreateCalendarEvent visible={visible} setVisible={setVisible} />
+            <Calendar visible={visible} setVisible={setVisible} />
             <MySwitch
               checked="Daily"
               unChecked="Hourly"
@@ -43,4 +43,4 @@ const ActionPanel = ({ changeForecastOption }) => {
   );
 };
 
-export default ActionPanel;
+export default Header;
