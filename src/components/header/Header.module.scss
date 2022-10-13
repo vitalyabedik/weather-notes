@@ -1,0 +1,19 @@
+@import "../../assets/styles/vars.scss";
+
+.header {
+  background-color: $grayBackgroundContainer;
+  padding: 16px;
+
+  &__search {
+    text-align: left;
+  }
+
+  //   &__items-center {
+  //     text-align: center;
+  //   }
+
+  //   &__items-right {
+  //     text-align: right;
+
+  //   }
+}

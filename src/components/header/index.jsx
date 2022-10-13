@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { Grid, Space, Col, Row } from "antd";
 
+import styles from "./Header.module.scss";
+
 import { MySearch, MySwitch } from "../UI";
 import Calendar from "../calendar";
 
@@ -14,13 +16,10 @@ const Header = ({ changeForecastOption }) => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div
-      className="container"
-      style={{ backgroundColor: "#434554", padding: 16 }}
-    >
+    <div className={`${"container"} ${styles.header}`}>
       <Row justify="space-around" gutter={[16, 16]}>
         <Col xs={24} sm={12} md={8}>
-          <MySearch style={{ textAlign: "left" }} />
+          <MySearch className={styles.header__search} />
         </Col>
         <Col
           xs={24}
