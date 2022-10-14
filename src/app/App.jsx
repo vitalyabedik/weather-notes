@@ -1,9 +1,8 @@
 import "./App.scss";
-
 import AppLayout from "../components/layout";
 
 const App = () => (
-  <div>
+  <div className="app">
     <AppLayout />
   </div>
 );

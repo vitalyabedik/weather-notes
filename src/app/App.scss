@@ -1,22 +1,18 @@
 @import "~antd/dist/antd.css";
 @import "../assets/styles/index.scss";
 
-.wrapper {
-  height: 100vh;
-  width: 100vw;
-  background: url(https://www.nasa.gov/sites/default/files/thumbnails/image/smap-weather.jpg);
-  background-position: center center;
-  background-size: cover;
-  position: relative;
-  overflow: hidden;
-  color: white;
-  position: absolute;
-
+.app {
   .ant-typography {
     color: $white;
   }
 
   .ant-tag {
     color: $white;
+    background-color: $grayBackgroundTag;
+    border: none;
+  }
+
+  .ant-card {
+    background: none;
   }
 }

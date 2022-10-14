@@ -16,16 +16,18 @@ const Header = ({ changeForecastOption }) => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className={`${"container"} ${styles.header}`}>
+    <div className={styles.header}>
       <Row justify="space-around" gutter={[16, 16]}>
         <Col xs={24} sm={12} md={8}>
           <MySearch className={styles.header__search} />
         </Col>
         <Col
+          className={
+            isMobile ? styles.header__itemsCenter : styles.header__itemsRight
+          }
           xs={24}
           sm={12}
           md={16}
-          style={{ textAlign: isMobile ? "center" : "right" }}
         >
           <Space size={8}>
             <Calendar visible={visible} setVisible={setVisible} />

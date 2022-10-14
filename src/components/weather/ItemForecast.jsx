@@ -4,20 +4,13 @@ const { Title } = Typography;
 
 const ItemForecast = ({ info, icon, temperature }) => (
   <div className="dailyForecast__item">
-    <Card
-      style={{
-        backgroundColor: "#434554",
-      }}
-      bordered={false}
-    >
+    <Card bordered={false}>
       <Row justify="center">
         <Col>
           {" "}
           <Tag
             style={{
               borderRadius: 10,
-              backgroundColor: "#2e3041",
-              border: "none",
               marginRight: 0,
             }}
           >

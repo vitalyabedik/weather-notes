@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "./AppLayout.module.scss";
+import styles from "./AppLayout.module.scss";
 
 import Header from "../header";
 import CurrentInfo from "../currentInfo";
@@ -15,14 +15,16 @@ const AppLayout = () => {
   };
 
   return (
-    <div className="wrapper">
-      <div style={{ margin: 20 }}>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
         <header>
           <Header changeForecastOption={changeForecastOption} />
         </header>{" "}
         <main>
           <CurrentInfo />
+
           <CurrentEvent />
+
           <Weather isDailyForecast={isDailyForecast} />
         </main>
       </div>

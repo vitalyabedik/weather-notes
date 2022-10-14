@@ -35,8 +35,7 @@ const TodayForecast = () => {
                 borderRadius: 15,
                 fontSize: 14,
                 padding: 8,
-                background: "#2e3041",
-                border: "none",
+                marginRight: 0,
               }}
             >
               TODAY

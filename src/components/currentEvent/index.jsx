@@ -17,10 +17,8 @@ const CurrentEvent = () => {
     <div className={styles.event}>
       {" "}
       <div
-        className="container"
         style={{
           marginBottom: 100,
-          background: "none",
         }}
       >
         <List
