@@ -22,9 +22,7 @@ const AppLayout = () => {
         </header>{" "}
         <main>
           <CurrentInfo />
-
           <CurrentEvent />
-
           <Weather isDailyForecast={isDailyForecast} />
         </main>
       </div>

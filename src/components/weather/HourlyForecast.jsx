@@ -111,22 +111,18 @@ const items = [
 ];
 
 const HourlyForecast = () => (
-  <div className="dailyForecast__list">
-    <Row justify="space-around">
-      {items.map((item) => (
-        <Col xs={8} sm={8} md={4}>
-          <div>
-            <ItemForecast
-              key={item.tag}
-              info={item.tag}
-              icon={item.icon}
-              temperature={item.temperature}
-            />
-          </div>
-        </Col>
-      ))}
-    </Row>
-  </div>
+  <Row justify="space-around">
+    {items.map((item) => (
+      <Col xs={8} sm={8} md={4}>
+        <ItemForecast
+          key={item.tag}
+          info={item.tag}
+          icon={item.icon}
+          temperature={item.temperature}
+        />
+      </Col>
+    ))}
+  </Row>
 );
 
 export default HourlyForecast;

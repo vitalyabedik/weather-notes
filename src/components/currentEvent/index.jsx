@@ -1,5 +1,4 @@
 import { List } from "antd";
-import styles from "./CurrentEvent.module.scss";
 
 import { MyListItem } from "../UI";
 
@@ -14,23 +13,14 @@ const CurrentEvent = () => {
   ];
 
   return (
-    <div className={styles.event}>
-      {" "}
-      <div
-        style={{
-          marginBottom: 100,
-        }}
-      >
-        <List
-          dataSource={notes}
-          renderItem={(item) => (
-            <List.Item style={{ borderBottom: "none" }}>
-              <MyListItem item={item} showItemsActions={false} />
-            </List.Item>
-          )}
-        />
-      </div>
-    </div>
+    <List
+      dataSource={notes}
+      renderItem={(item) => (
+        <List.Item>
+          <MyListItem item={item} showItemsActions={false} />
+        </List.Item>
+      )}
+    />
   );
 };
 

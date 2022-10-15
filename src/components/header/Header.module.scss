@@ -2,17 +2,17 @@
 
 .header {
   background-color: $grayBackgroundContainer;
-  padding: 16px;
+  padding: 1.6rem;
 
   &__search {
     text-align: left;
   }
 
-  &__itemsCenter {
+  &__items-center {
     text-align: center;
   }
 
-  &__itemsRight {
+  &__items-right {
     text-align: right;
   }
 }

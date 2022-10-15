@@ -11,7 +11,7 @@ const ListItem = ({ item, showItemsActions }) => (
       <Tag className={showItemsActions ? null : styles[`ant-tag`]}>
         {item.time}
       </Tag>
-      <Text style={{ fontSize: 18 }}>{item.text}</Text>
+      <Text style={{ fontSize: 20 }}>{item.text}</Text>
     </div>
     {showItemsActions && (
       <div>

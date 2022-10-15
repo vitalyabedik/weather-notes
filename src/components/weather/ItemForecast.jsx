@@ -1,34 +1,27 @@
-import { Typography, Card, Tag, Row, Col } from "antd";
+import { Row, Col, Typography, Card, Tag, Image } from "antd";
 
-const { Title } = Typography;
+import styles from "./ItemForecast.module.scss";
+
+const { Text } = Typography;
 
 const ItemForecast = ({ info, icon, temperature }) => (
-  <div className="dailyForecast__item">
+  <div className={styles.itemForecast}>
     <Card bordered={false}>
       <Row justify="center">
         <Col>
           {" "}
-          <Tag
-            style={{
-              borderRadius: 10,
-              marginRight: 0,
-            }}
-          >
-            {info}
-          </Tag>
+          <Tag className={styles[`ant-tag`]}>{info}</Tag>
         </Col>
       </Row>
       <Row justify="center">
         <Col>
           {" "}
-          <img
-            style={{
-              width: 40,
-              paddingTop: 15,
-              paddingBottom: 15,
-            }}
-            alt="weather"
+          <Image
+            className={styles.itemForecast__image}
             src={icon}
+            width={40}
+            alt="weather"
+            preview={false}
           />
         </Col>
       </Row>
@@ -36,7 +29,9 @@ const ItemForecast = ({ info, icon, temperature }) => (
         {" "}
         <Col>
           {" "}
-          <Title level={4}>{temperature}&deg;</Title>
+          <Text className={styles[`ant-typography`]} strong>
+            {temperature}&deg;
+          </Text>
         </Col>
       </Row>
     </Card>

@@ -23,7 +23,9 @@ const Header = ({ changeForecastOption }) => {
         </Col>
         <Col
           className={
-            isMobile ? styles.header__itemsCenter : styles.header__itemsRight
+            isMobile
+              ? styles[`header__items-center`]
+              : styles[`header__items-right`]
           }
           xs={24}
           sm={12}
