@@ -17,7 +17,7 @@ const NoteList = () => {
       <List
         dataSource={notes}
         renderItem={(item) => (
-          <List.Item style={{ borderBottom: "none" }}>
+          <List.Item>
             <MyListItem item={item} showItemsActions />
           </List.Item>
         )}

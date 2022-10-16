@@ -1,6 +1,8 @@
 import { Grid, Row, Col, Typography } from "antd";
 
-const { Title } = Typography;
+import styles from "./TodayInfo.module.scss";
+
+const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 const TodayInfo = () => {
@@ -8,21 +10,25 @@ const TodayInfo = () => {
   const isMobile = screens.xs;
 
   return (
-    <>
+    <div className={styles.todayInfo}>
       <Row justify={isMobile && "center"} gutter={[8]} align="middle">
-        <Col>
-          <Title level={1}>12:30</Title>
-        </Col>
-        <Col>
-          <Title level={4}>PM</Title>
+        <Col className={styles.locationInfo__time}>
+          <Text className={styles[`ant-typography`]} strong>
+            12:30{" "}
+            <span className={styles[`locationInfo__time-pm`]}>
+              <Text className={styles[`ant-typography`]}>PM</Text>
+            </span>
+          </Text>
         </Col>
       </Row>
       <Row justify={isMobile && "center"}>
-        <Col>
-          <Title level={4}>Monday, 3 October 2022</Title>
+        <Col className={styles.locationInfo__date}>
+          <Text className={styles[`ant-typography`]}>
+            Monday, 3 October 2022
+          </Text>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

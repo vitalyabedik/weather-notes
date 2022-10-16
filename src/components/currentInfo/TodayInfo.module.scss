@@ -1,0 +1,21 @@
+.locationInfo {
+  &__time {
+    .ant-typography {
+      font-size: 6.8rem;
+    }
+
+    &-pm {
+      .ant-typography {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  &__date {
+    text-align: center;
+
+    .ant-typography {
+      font-size: 3rem;
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import { Grid, Row, Col, Typography } from "antd";
 
-const { Title } = Typography;
+import styles from "./LocationInfo.module.scss";
+
+const { Text } = Typography;
 const { useBreakpoint } = Grid;
 
 const LocationInfo = () => {
@@ -8,19 +10,21 @@ const LocationInfo = () => {
   const isMobile = screens.xs;
 
   return (
-    <>
+    <div className={styles.locationInfo}>
       {" "}
       <Row justify={isMobile ? "center" : "end"}>
-        <Col>
-          <Title level={3}>Soligorsk</Title>
+        <Col className={styles.locationInfo__city}>
+          <Text className={styles[`ant-typography`]} strong>
+            Soligorsk
+          </Text>
         </Col>
       </Row>
       <Row justify={isMobile ? "center" : "end"} align="middle">
-        <Col>
-          <Title level={4}>Belarus</Title>
+        <Col className={styles.locationInfo__country}>
+          <Text className={styles[`ant-typography`]}>Belarus</Text>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

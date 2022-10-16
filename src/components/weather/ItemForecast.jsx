@@ -19,7 +19,7 @@ const ItemForecast = ({ info, icon, temperature }) => (
           <Image
             className={styles.itemForecast__image}
             src={icon}
-            width={40}
+            width={45}
             alt="weather"
             preview={false}
           />
