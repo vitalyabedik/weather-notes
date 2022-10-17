@@ -1,4 +1,7 @@
 import { CalendarOutlined } from "@ant-design/icons";
+
+import styles from "./Calendar.module.scss";
+
 import { MyModal, MyCalendar } from "../UI";
 import NoteModal from "../note";
 // import CalendarEvent from "./calendarEvent";
@@ -10,7 +13,7 @@ const Calendar = ({ visible, setVisible }) => (
     visible={visible}
     setVisible={setVisible}
     width={1000}
-    icon={<CalendarOutlined style={{ color: "white" }} />}
+    icon={<CalendarOutlined className={styles.calendar__icon} />}
   >
     <div>
       <MyCalendar visible={visible} setVisible={setVisible} />

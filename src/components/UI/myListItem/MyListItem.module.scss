@@ -1,8 +1,24 @@
+@import "../../../assets/styles/";
+
+.listItem {
+  &__icon {
+    &-visibility {
+      display: none;
+    }
+
+    &-delete {
+      color: red;
+      margin-left: 1.2rem;
+    }
+  }
+}
+
+.ant-typography {
+  font-size: 2rem;
+}
+
 .ant-tag {
-  padding: 4px 10px;
-  border-radius: 15px;
-  background-color: #2e3041;
-  border: none;
-  font-size: 18px;
-  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 1.6rem;
 }

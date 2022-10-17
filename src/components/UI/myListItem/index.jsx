@@ -7,18 +7,16 @@ const { Text } = Typography;
 
 const ListItem = ({ item, showItemsActions }) => (
   <>
-    <div>
-      <Tag className={showItemsActions ? null : styles[`ant-tag`]}>
-        {item.time}
-      </Tag>
-      <Text style={{ fontSize: 20 }}>{item.text}</Text>
+    <div className={styles.listItem}>
+      <Tag className={!showItemsActions && styles[`ant-tag`]}>{item.time}</Tag>
+      <Text className={!showItemsActions && styles[`ant-typography`]}>
+        {item.text}
+      </Text>
     </div>
-    {showItemsActions && (
-      <div>
-        <EditOutlined />
-        <DeleteOutlined style={{ color: "red", marginLeft: 12 }} />
-      </div>
-    )}
+    <div className={!showItemsActions && styles[`listItem__icon-visibility`]}>
+      <EditOutlined />
+      <DeleteOutlined className={styles[`listItem__icon-delete`]} />
+    </div>
   </>
 );
 

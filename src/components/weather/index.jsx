@@ -7,17 +7,15 @@ import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
 
 const Weather = ({ isDailyForecast }) => (
-  <div className="container">
-    <div className={styles.weather}>
-      <Row align="middle">
-        <Col xs={24} sm={8} md={6} lg={5} xl={4}>
-          <TodayForecast />
-        </Col>
-        <Col xs={24} sm={16} md={18} lg={19} xl={20}>
-          <div>{isDailyForecast ? <DailyForecast /> : <HourlyForecast />}</div>
-        </Col>
-      </Row>
-    </div>
+  <div className={styles.weather}>
+    <Row align="middle">
+      <Col xs={24} sm={8} md={6} lg={5} xl={4}>
+        <TodayForecast />
+      </Col>
+      <Col xs={24} sm={16} md={18} lg={19} xl={20}>
+        <div>{isDailyForecast ? <DailyForecast /> : <HourlyForecast />}</div>
+      </Col>
+    </Row>
   </div>
 );
 
