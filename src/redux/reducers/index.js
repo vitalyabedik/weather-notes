@@ -1,9 +1,13 @@
 import { combineReducers } from "redux";
 
-import noteReducer from "./noteReducer";
+import textReducer from "./textReducer";
+import notesReducer from "./notesReducer";
 import weatherReducer from "./weatherReducer";
 
-export default combineReducers({
-  note: noteReducer,
+const rootReducer = combineReducers({
+  text: textReducer,
+  notes: notesReducer,
   weather: weatherReducer,
 });
+
+export default rootReducer;
