@@ -1,18 +1,24 @@
-import { Space, Form, Input, TimePicker, Button } from "antd";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
 
+import { Space, Form, Input, TimePicker, Button } from "antd";
 import { PlusCircleOutlined, ReloadOutlined } from "@ant-design/icons";
 
-import { useDispatch, useSelector } from "react-redux";
 import setText from "../../redux/actions/textAction";
 import { setNote } from "../../redux/actions/notesAction";
 
-// import { MyDatePicker, MyTimePicker } from "../../../UI";
-
 const NoteForm = () => {
+  const [selectedTime, setSelectedTime] = useState(null);
   const dispatch = useDispatch();
   const text = useSelector((store) => store.text);
 
   const [form] = Form.useForm();
+
+  const addNote = () => {
+    dispatch(setNote(selectedTime, text));
+    form.resetFields();
+  };
 
   const onReset = () => {
     form.resetFields();
@@ -28,19 +34,20 @@ const NoteForm = () => {
           allowClear
         />
       </Form.Item>
-
-      {/* <Form.Item name="date-picker" label="Date" hasFeedback>
-        <DatePicker picker="date" placeholder="Select date" />
-      </Form.Item> */}
-
       <Form.Item name="time-picker" label="Time" hasFeedback>
-        <TimePicker />
+        <TimePicker
+          format="HH:mm"
+          value={moment(selectedTime)}
+          onSelect={(value) => {
+            const timeString = moment(value).format("HH:mm");
+            setSelectedTime(timeString);
+          }}
+        />
       </Form.Item>
-
       <Form.Item>
         <Space size={8}>
           <Button
-            onClick={() => dispatch(setNote("01:00", text))}
+            onClick={addNote}
             type="primary"
             htmlType="submit"
             icon={<PlusCircleOutlined />}

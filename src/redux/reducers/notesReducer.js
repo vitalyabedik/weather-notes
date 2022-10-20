@@ -1,6 +1,7 @@
 import { SET_NOTE } from "../actions/actionTypes";
 
 const initialValue = [
+  // example data
   { time: "08:00", text: "Start work" },
   { time: "17:15", text: "End work" },
   { time: "17:30", text: "Go to the gym" },

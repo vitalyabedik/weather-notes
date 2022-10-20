@@ -1,4 +1,4 @@
-import { SET_NOTE, ADD_NOTE } from "./actionTypes";
+import { SET_NOTE, REMOVE_NOTE } from "./actionTypes";
 
 export const setNote = (time, text) => ({
   type: SET_NOTE,
@@ -8,7 +8,7 @@ export const setNote = (time, text) => ({
   },
 });
 
-export const addNote = (data) => ({
-  type: ADD_NOTE,
+export const removeNote = (data) => ({
+  type: REMOVE_NOTE,
   payload: data,
 });

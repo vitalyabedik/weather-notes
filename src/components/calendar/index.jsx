@@ -4,11 +4,9 @@ import styles from "./Calendar.module.scss";
 
 import { MyModal, MyCalendar } from "../UI";
 import NoteModal from "../note";
-// import CalendarEvent from "./calendarEvent";
 
 const Calendar = ({ visible, setVisible }) => (
   <MyModal
-    // title="Open calendar"
     type="text"
     visible={visible}
     setVisible={setVisible}

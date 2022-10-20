@@ -29,21 +29,8 @@ const MyCalendar = () => {
     setValue(newValue.i);
   };
 
-  // const clickOnButton = (e) => {
-  //   e.stopPropagation();
-  //   alert("Clicked on button!");
-  // };
-
   return (
-    <div>
-      <Calendar
-        value={value}
-        onSelect={onSelect}
-        onPanelChange={onPanelChange}
-      />
-
-      {/* <Button onClick={clickOnButton}>Click Me</Button>; */}
-    </div>
+    <Calendar value={value} onSelect={onSelect} onPanelChange={onPanelChange} />
   );
 };
 
