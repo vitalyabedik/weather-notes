@@ -1,14 +1,15 @@
 import { SET_NOTE, REMOVE_NOTE } from "./actionTypes";
 
-export const setNote = (time, text) => ({
+export const setNote = (id, time, text) => ({
   type: SET_NOTE,
   payload: {
+    id,
     time,
     text,
   },
 });
 
-export const removeNote = (data) => ({
+export const removeNote = (id) => ({
   type: REMOVE_NOTE,
-  payload: data,
+  payload: id,
 });

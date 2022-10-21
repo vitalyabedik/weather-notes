@@ -16,7 +16,8 @@ const NoteForm = () => {
   const [form] = Form.useForm();
 
   const addNote = () => {
-    dispatch(setNote(selectedTime, text));
+    const id = Date.now();
+    dispatch(setNote(id, selectedTime, text));
     form.resetFields();
   };
 
