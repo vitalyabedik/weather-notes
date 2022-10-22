@@ -1,15 +1,16 @@
-import { SET_NOTE, REMOVE_NOTE } from "./actionTypes";
+import { ADD_NOTE, DELETE_NOTE, UPDATE_NOTE } from "./actionTypes";
 
-export const setNote = (id, time, text) => ({
-  type: SET_NOTE,
-  payload: {
-    id,
-    time,
-    text,
-  },
+export const addNote = (note) => ({
+  type: ADD_NOTE,
+  payload: note,
 });
 
-export const removeNote = (id) => ({
-  type: REMOVE_NOTE,
-  payload: id,
+export const deleteNote = (note) => ({
+  type: DELETE_NOTE,
+  payload: note,
+});
+
+export const updateNote = (note) => ({
+  type: UPDATE_NOTE,
+  payload: note,
 });

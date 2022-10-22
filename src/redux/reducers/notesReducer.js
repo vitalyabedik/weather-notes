@@ -1,4 +1,4 @@
-import { SET_NOTE, REMOVE_NOTE } from "../actions/actionTypes";
+import { ADD_NOTE, DELETE_NOTE, UPDATE_NOTE } from "../actions/actionTypes";
 
 const initialValue = [
   // example data
@@ -11,12 +11,17 @@ const initialValue = [
 
 const notesReducer = (state = initialValue, action) => {
   switch (action.type) {
-    case SET_NOTE: {
+    case ADD_NOTE: {
       return [...state, action.payload];
     }
-    case REMOVE_NOTE: {
+    case DELETE_NOTE: {
       return state.filter((note) => note.id !== action.payload);
     }
+
+    case UPDATE_NOTE: {
+      return [...state, action.payload];
+    }
+
     default: {
       return state;
     }

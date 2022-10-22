@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
@@ -6,18 +6,30 @@ import { Space, Form, Input, TimePicker, Button } from "antd";
 import { PlusCircleOutlined, ReloadOutlined } from "@ant-design/icons";
 
 import setText from "../../redux/actions/textAction";
-import { setNote } from "../../redux/actions/notesAction";
+import { addNote } from "../../redux/actions/notesAction";
 
 const NoteForm = () => {
   const [selectedTime, setSelectedTime] = useState(null);
+  const textInput = useRef(null);
+
   const dispatch = useDispatch();
   const text = useSelector((store) => store.text);
 
   const [form] = Form.useForm();
 
-  const addNote = () => {
-    const id = Date.now();
-    dispatch(setNote(id, selectedTime, text));
+  useEffect(() => {
+    textInput.current.focus();
+  });
+
+  const handleAddNote = (event) => {
+    event.preventDefault();
+    dispatch(
+      addNote({
+        id: Date.now(),
+        time: selectedTime,
+        text,
+      })
+    );
     form.resetFields();
   };
 
@@ -29,6 +41,7 @@ const NoteForm = () => {
     <Form form={form} autoComplete="off">
       <Form.Item name="note" label="Text">
         <Input
+          ref={textInput}
           value={text}
           onChange={(e) => dispatch(setText(e.target.value))}
           placeholder="Enter new note"
@@ -48,7 +61,7 @@ const NoteForm = () => {
       <Form.Item>
         <Space size={8}>
           <Button
-            onClick={addNote}
+            onClick={handleAddNote}
             type="primary"
             htmlType="submit"
             icon={<PlusCircleOutlined />}
