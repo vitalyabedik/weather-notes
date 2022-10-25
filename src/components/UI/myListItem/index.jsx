@@ -1,25 +1,25 @@
 import { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
+import moment from "moment";
 
-import { Input, Tag, Typography } from "antd";
+import { Form, TimePicker, Input, Tag, Typography } from "antd";
 import { SaveOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import styles from "./MyListItem.module.scss";
 
+// import {setText} from '../../../redux/actions/textAction';
 import { deleteNote, updateNote } from "../../../redux/actions/notesAction";
 
 const { Text } = Typography;
 
 const ListItem = ({ item, showItemsActions }) => {
   const [text, setText] = useState(item.text);
+  const [time, setTime] = useState(item.time);
   const [isEditing, setIsEditing] = useState(false);
-  const inputRef = useRef(null);
+
+  const [form] = Form.useForm();
 
   const dispatch = useDispatch();
-
-  const valid = () => {
-    inputRef.current.focus();
-  };
 
   const handleEditNote = () => {
     if (isEditing) {
@@ -33,7 +33,8 @@ const ListItem = ({ item, showItemsActions }) => {
     dispatch(
       updateNote({
         id: item.id,
-        updatedNote: text,
+        updatedNoteText: text,
+        updatedNoteTime: time,
       })
     );
     setIsEditing(!isEditing);
@@ -52,16 +53,27 @@ const ListItem = ({ item, showItemsActions }) => {
             </Text>
           </div>
         ) : (
-          <div className={styles[`listItem__input-update`]}>
-            {" "}
-            <Input
-              compact
-              ref={inputRef}
-              addonBefore={item.time}
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              allowClear
-            />
+          <div className={styles.listItem__input}>
+            <div className={styles[`listItem__input-time`]}>
+              <TimePicker
+                format="HH:mm"
+                defaultValue={moment(time, "HH:mm")}
+                onSelect={(value) => {
+                  const timeString = moment(value).format("HH:mm");
+                  setTime(timeString);
+                }}
+                autoFocus
+              />
+            </div>
+            <div className={styles[`listItem__input-text`]}>
+              {" "}
+              <Input
+                compact
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                allowClear
+              />
+            </div>
           </div>
         )}
       </div>

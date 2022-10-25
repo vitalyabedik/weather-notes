@@ -22,7 +22,11 @@ const notesReducer = (state = initialValue, action) => {
     case UPDATE_NOTE: {
       return state.map((note) =>
         note.id === action.payload.id
-          ? { ...note, text: action.payload.updatedNote }
+          ? {
+              ...note,
+              text: action.payload.updatedNoteText,
+              time: action.payload.updatedNoteTime,
+            }
           : note
       );
     }

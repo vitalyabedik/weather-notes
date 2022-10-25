@@ -12,8 +12,15 @@
     }
   }
 
-  &__input-update {
-    max-width: 150;
+  &__input {
+    display: flex;
+
+    // &-time {
+    //   width: 8rem;
+    // }
+    &-text {
+      width: 15rem;
+    }
   }
 }
 

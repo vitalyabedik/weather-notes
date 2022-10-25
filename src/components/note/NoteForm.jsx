@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
@@ -10,16 +10,11 @@ import { addNote } from "../../redux/actions/notesAction";
 
 const NoteForm = () => {
   const [selectedTime, setSelectedTime] = useState(null);
-  const textInput = useRef(null);
 
   const dispatch = useDispatch();
   const text = useSelector((store) => store.text);
 
   const [form] = Form.useForm();
-
-  useEffect(() => {
-    textInput.current.focus();
-  });
 
   const handleAddNote = (event) => {
     event.preventDefault();
@@ -42,10 +37,10 @@ const NoteForm = () => {
     <Form form={form} autoComplete="off">
       <Form.Item name="note" label="Text">
         <Input
-          ref={textInput}
           value={text}
           onChange={(e) => dispatch(setText(e.target.value))}
           placeholder="Enter new note"
+          autoFocus
           allowClear
         />
       </Form.Item>
