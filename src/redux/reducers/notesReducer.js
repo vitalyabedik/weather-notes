@@ -14,12 +14,17 @@ const notesReducer = (state = initialValue, action) => {
     case ADD_NOTE: {
       return [...state, action.payload];
     }
+
     case DELETE_NOTE: {
       return state.filter((note) => note.id !== action.payload);
     }
 
     case UPDATE_NOTE: {
-      return [...state, action.payload];
+      return state.map((note) =>
+        note.id === action.payload.id
+          ? { ...note, text: action.payload.updatedNote }
+          : note
+      );
     }
 
     default: {

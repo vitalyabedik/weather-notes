@@ -11,27 +11,42 @@ import { deleteNote, updateNote } from "../../../redux/actions/notesAction";
 const { Text } = Typography;
 
 const ListItem = ({ item, showItemsActions }) => {
-  const inputRef = useRef(null);
   const [text, setText] = useState(item.text);
-  const [edit, setEdit] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const inputRef = useRef(null);
 
   const dispatch = useDispatch();
 
   const valid = () => {
-    inputRef.current.focus({
-      preventScroll: true,
-    });
+    inputRef.current.focus();
+  };
+
+  const handleEditNote = () => {
+    if (isEditing) {
+      const newNote = text;
+      dispatch(updateNote(newNote));
+    }
+    setIsEditing(!isEditing);
+  };
+
+  const handleUpdateNote = () => {
+    dispatch(
+      updateNote({
+        id: item.id,
+        updatedNote: text,
+      })
+    );
+    setIsEditing(!isEditing);
   };
 
   return (
     <>
       <div className={styles.listItem}>
-        {!edit ? (
+        {!isEditing ? (
           <div>
             <Tag className={!showItemsActions && styles[`ant-tag`]}>
               {item.time}
             </Tag>
-
             <Text className={!showItemsActions && styles[`ant-typography`]}>
               {item.text}
             </Text>
@@ -45,7 +60,6 @@ const ListItem = ({ item, showItemsActions }) => {
               addonBefore={item.time}
               value={text}
               onChange={(e) => setText(e.target.value)}
-              // onPressEnter{(e) => console.log(e.target.value)}
               allowClear
             />
           </div>
@@ -53,28 +67,16 @@ const ListItem = ({ item, showItemsActions }) => {
       </div>
       <div className={!showItemsActions && styles[`listItem__icon-visibility`]}>
         <div>
-          {!edit ? (
+          {!isEditing ? (
             <div>
-              <EditOutlined
-                onClick={() => {
-                  if (edit) {
-                    setText(text);
-                  }
-                  setEdit(!edit);
-                  valid();
-                }}
-              />
+              <EditOutlined onClick={handleEditNote} />
               <DeleteOutlined
                 onClick={() => dispatch(deleteNote(item.id))}
                 className={styles[`listItem__icon-delete`]}
               />
             </div>
           ) : (
-            <SaveOutlined
-              onClick={() => {
-                setEdit(!edit);
-              }}
-            />
+            <SaveOutlined onClick={handleUpdateNote} />
           )}
         </div>
       </div>

@@ -28,6 +28,7 @@ const NoteForm = () => {
         id: Date.now(),
         time: selectedTime,
         text,
+        editing: false,
       })
     );
     form.resetFields();
