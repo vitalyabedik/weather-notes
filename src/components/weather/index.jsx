@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Col, Row } from "antd";
 
 import styles from "./Weather.module.scss";
@@ -6,9 +8,19 @@ import styles from "./Weather.module.scss";
 import TodayForecast from "./TodayForecast";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
+import { loadCurrentWeather } from "../../redux/actions/weatherAction";
 
 const Weather = ({ isDailyForecast }) => {
   const [weatherDate, setWeatherData] = useState();
+  const lat = 40;
+  const lon = 40;
+
+  const dispatch = useDispatch();
+  const weatherData = useSelector((store) => store.weather);
+
+  useEffect(() => {
+    dispatch(loadCurrentWeather(lat, lon));
+  }, []);
 
   // const [lat, setLat] = useState([]);
   // const [long, setLong] = useState([]);
@@ -28,7 +40,7 @@ const Weather = ({ isDailyForecast }) => {
   // const APIKey = "b9ac83fce506bd99363a07a936631208";
 
   // useEffect(() => {
-  // const API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${APIKey}`;
+  //   const API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${APIKey}`;
   //   fetch(API)
   //     .then((res) => res.json())
   //     .then((data) => {

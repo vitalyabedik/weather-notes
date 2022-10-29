@@ -1,4 +1,4 @@
-import { GET_WEATHER, SET_ERROR, SET_LOADING } from "../actions/actionTypes";
+import { SET_WEATHER, SET_ERROR, SET_LOADING } from "../actions/actionTypes";
 
 const initialValue = {
   data: null,
@@ -8,7 +8,7 @@ const initialValue = {
 
 const weatherReducer = (state = initialValue, action) => {
   switch (action.type) {
-    case GET_WEATHER: {
+    case SET_WEATHER: {
       return {
         ...state,
         data: action.payload,
