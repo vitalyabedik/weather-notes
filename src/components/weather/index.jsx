@@ -16,7 +16,7 @@ const Weather = ({ isDailyForecast }) => {
   const lon = 40;
 
   const dispatch = useDispatch();
-  const weatherData = useSelector((store) => store.weather);
+  // const weatherData = useSelector((store) => store.weather);
 
   useEffect(() => {
     dispatch(loadCurrentWeather(lat, lon));

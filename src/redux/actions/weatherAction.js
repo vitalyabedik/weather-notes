@@ -20,7 +20,7 @@ export const loadCurrentWeather =
     dispatch(setLoading);
 
     client
-      .get(api.currentWeatherOPENWEATHER(lat, lon))
+      .get(api.openWeatherAPI.getCurrentWeather(lat, lon))
       .then(({ data }) => dispatch(setWeather(data)))
       .catch((error) => dispatch(setError(error.message)));
   };

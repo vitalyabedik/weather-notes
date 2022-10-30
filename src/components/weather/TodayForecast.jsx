@@ -1,4 +1,5 @@
 import { Grid, Row, Col, Typography, Tag, Image } from "antd";
+import { useSelector } from "react-redux";
 
 import styles from "./TodayForecast.module.scss";
 
@@ -8,6 +9,14 @@ const { useBreakpoint } = Grid;
 const TodayForecast = () => {
   const screens = useBreakpoint();
   const isMobile = screens.xs;
+
+  const { data } = useSelector((state) => state.weather);
+  // const weatherData = storeData.data;
+  // const data = {
+  //   storeData.data.coord.lon,
+  // };
+
+  console.log(data);
 
   return (
     <div className={styles.todayForecast}>
