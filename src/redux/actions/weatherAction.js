@@ -1,4 +1,8 @@
-import { SET_WEATHER, SET_ERROR, SET_LOADING } from "./actionTypes";
+import {
+  SET_WEATHER,
+  SET_WEATHER_ERROR,
+  SET_WEATHER_LOADING,
+} from "./actionTypes";
 
 export const setWeather = (data) => ({
   type: SET_WEATHER,
@@ -6,21 +10,21 @@ export const setWeather = (data) => ({
 });
 
 export const setError = (error) => ({
-  type: SET_ERROR,
+  type: SET_WEATHER_ERROR,
   payload: error,
 });
 
 export const setLoading = () => ({
-  type: SET_LOADING,
+  type: SET_WEATHER_LOADING,
 });
 
-export const loadCurrentWeather =
+export const loadWeather =
   (lat, lon) =>
-  (dispatch, _, { client, api }) => {
+  (dispatch, _, { client, openWeatherAPI }) => {
     dispatch(setLoading);
 
     client
-      .get(api.openWeatherAPI.getCurrentWeatherByCoordinates(lat, lon))
+      .get(openWeatherAPI.getWeatherForecast(lat, lon))
       .then(({ data }) => dispatch(setWeather(data)))
       .catch((error) => dispatch(setError(error.message)));
   };

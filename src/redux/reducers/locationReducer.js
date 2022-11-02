@@ -1,7 +1,7 @@
 import {
-  SET_WEATHER,
-  SET_WEATHER_ERROR,
-  SET_WEATHER_LOADING,
+  SET_LOCATION,
+  SET_LOCATION_ERROR,
+  SET_LOCATION_LOADING,
 } from "../actions/actionTypes";
 
 const initialValue = {
@@ -12,7 +12,7 @@ const initialValue = {
 
 const weatherReducer = (state = initialValue, action) => {
   switch (action.type) {
-    case SET_WEATHER: {
+    case SET_LOCATION: {
       return {
         ...state,
         data: action.payload,
@@ -21,7 +21,7 @@ const weatherReducer = (state = initialValue, action) => {
       };
     }
 
-    case SET_WEATHER_ERROR: {
+    case SET_LOCATION_ERROR: {
       return {
         ...state,
         error: action.payload,
@@ -29,7 +29,7 @@ const weatherReducer = (state = initialValue, action) => {
       };
     }
 
-    case SET_WEATHER_LOADING: {
+    case SET_LOCATION_LOADING: {
       return {
         ...state,
         loading: true,

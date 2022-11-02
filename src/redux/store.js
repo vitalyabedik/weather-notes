@@ -4,7 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 import rootReducer from "./reducers";
-import * as api from "../config";
+import { openWeatherAPI, geocodingAPI } from "../config";
 
 const store = createStore(
   rootReducer,
@@ -12,7 +12,8 @@ const store = createStore(
     applyMiddleware(
       thunk.withExtraArgument({
         client: axios,
-        api,
+        openWeatherAPI,
+        geocodingAPI,
       })
     )
   )
