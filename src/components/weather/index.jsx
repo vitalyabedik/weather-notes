@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -8,47 +9,161 @@ import styles from "./Weather.module.scss";
 import TodayForecast from "./TodayForecast";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
-import { loadCurrentWeather } from "../../redux/actions/weatherAction";
+
+import { loadWeather } from "../../redux/actions/weatherAction";
+import { loadLocation } from "../../redux/actions/locationAction";
 
 const Weather = ({ isDailyForecast }) => {
-  const [weatherDate, setWeatherData] = useState();
-  const lat = 40;
-  const lon = 40;
+  const [currentLocation, setCurrentLocation] = useState({});
+  const [lat, setLat] = useState("");
+  const [lon, setLon] = useState("");
+  const [responseData, setResponseData] = useState({});
 
   const dispatch = useDispatch();
-  // const weatherData = useSelector((store) => store.weather);
-
-  useEffect(() => {
-    dispatch(loadCurrentWeather(lat, lon));
-  }, []);
-
-  // const [lat, setLat] = useState([]);
-  // const [long, setLong] = useState([]);
 
   // useEffect(() => {
   //   navigator.geolocation.getCurrentPosition((position) => {
   //     setLat(position.coords.latitude);
-  //     setLong(position.coords.longitude);
+  //     setLon(position.coords.longitude);
   //   });
-
-  //   console.log("Latitude is:", lat);
-  //   console.log("Longitude is:", long);
-  // }, [lat, long]);
-
-  // const lon = -80.0;
-  // const lat = 40.0;
-  // const APIKey = "b9ac83fce506bd99363a07a936631208";
+  //   dispatch(loadLocation(lat, lon));
+  //   dispatch(loadWeather(lat, lon));
+  // }, [lat, lon]);
 
   // useEffect(() => {
-  //   const API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${APIKey}`;
-  //   fetch(API)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
+  // navigator.geolocation.getCurrentPosition((position) => {
+  //   setLat(position.coords.latitude);
+  //   setLon(position.coords.longitude);
+  // });
+  //   dispatch(loadLocation(lat, lon));
+  //   dispatch(loadWeather(lat, lon));
+  // }, [lat, lon]);
+
+  // !!!
+  // const useGeoLocation = () => {
+  //   const [curLocation, setCurLocation] = useState({
+  //     loaded: false,
+  //     coordinates: {},
+  //   });
+
+  //   const onSuccess = (location) => {
+  //     setCurLocation({
+  //       loaded: true,
+  //       coordinates: {
+  //         lat: location.coords.latitude,
+  //         lon: location.coords.longitude,
+  //       },
   //     });
+  //   };
+
+  //   const onError = (error) => {
+  //     setCurLocation({
+  //       loaded: true,
+  //       error,
+  //     });
+  //   };
+
+  //   useEffect(() => {
+  //     if (!("geolocation" in navigator)) {
+  //       onError({
+  //         code: 0,
+  //         message: "Geolocation not supported",
+  //       });
+  //     }
+
+  //     navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  //   }, []);
+
+  //   return curLocation;
+  // };
+
+  // const location = useGeoLocation();
+  // console.log(location);
+
+  // !!
+
+  // useEffect(() => {
+  //   const { lat, lon } = location.coordinates;
+
+  // dispatch(loadLocation(lat, lon));
   // }, []);
 
-  return (
+  // const [locationData, setLocationData] = useState("");
+  // const getCurrentLocation = (position) => {
+  //   console.log(position);
+  //   const data = {
+  //     lat: position.coords.latitude,
+  //     lon: position.coords.longitude,
+  //   }
+  //   setLocationData(data)
+  // }
+
+  const BASE_GEOCODING_URL_OPENWEATHER =
+    "http://api.openweathermap.org/geo/1.0/";
+  const APIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+
+  const getLocation = async () => {
+    const location = await navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLat(position.coords.latitude);
+        setLon(position.coords.longitude);
+      }
+    );
+  };
+
+  const fetchLocation = async () => {
+    const result = await axios
+      .get(
+        `${BASE_GEOCODING_URL_OPENWEATHER}reverse?lat=${lat}&lon=${lon}&limit=1&appid=${APIKey}`
+      )
+      .then((response) => {
+        setResponseData(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getLocation();
+    fetchLocation();
+  }, [lat, lon]);
+
+  console.log(responseData[0]);
+
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     setLat(position.coords.latitude);
+  //     setLon(position.coords.longitude);
+  //   });
+
+  //   const endpointAPI = `${BASE_GEOCODING_URL_OPENWEATHER}reverse?lat=${lat}&lon=${lon}&limit=1&appid=${APIKey}`;
+
+  // axios.get(endpointAPI).then((response) => {
+  //   setResponseData(response.data);
+  //   console.log(response.data);
+  // });
+  // }, [lat, lon]);
+
+  //   fetch(
+  //     `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${`b9ac83fce506bd99363a07a936631208`}`
+  //   )
+  //     .then((resp) => resp.json())
+  //     .then((data) => console.log(data));
+  // });
+
+  // useEffect(() => {
+  //   const lat = 52.7876;
+  //   const lon = 27.5415;
+
+  //   dispatch(loadLocation(lat, lon));
+  //   dispatch(loadWeather(lat, lon));
+  // }, []);
+
+  // const lat = currentLocation.latitude;
+  // const lon = currentLocation.longitude;
+
+  // console.log(lat);
+  // console.log(lon);
+
+  return lat ? (
     <div className={styles.weather}>
       <Row align="middle">
         <Col xs={24} sm={8} md={6} lg={5} xl={4}>
@@ -59,6 +174,8 @@ const Weather = ({ isDailyForecast }) => {
         </Col>
       </Row>
     </div>
+  ) : (
+    "Loading..."
   );
 };
 

@@ -10,13 +10,17 @@ const TodayForecast = () => {
   const screens = useBreakpoint();
   const isMobile = screens.xs;
 
-  const { data } = useSelector((state) => state.weather);
+  const weather = useSelector((state) => state.weather.data);
+  const location = useSelector((state) => state.location.data);
   // const weatherData = storeData.data;
-  // const data = {
-  //   storeData.data.coord.lon,
-  // };
 
-  console.log(data);
+  const countryInEnglish = new Intl.DisplayNames("en", { type: "region" }).of(
+    "BY"
+  );
+
+  // console.log(weather);
+  // console.log(location);
+  // console.log(countryInEnglish);
 
   return (
     <div className={styles.todayForecast}>
