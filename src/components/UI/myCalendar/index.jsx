@@ -1,28 +1,27 @@
 import { useState } from "react";
 
 import { Calendar } from "antd";
-import moment from "moment";
 
-moment.updateLocale("en", {
-  week: {
-    dow: 1,
-    doy: 7,
-  },
-});
-
-moment.updateLocale("en", {
-  weekdaysMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-});
+import {
+  formatCalendarYearMonthDay,
+  setCalendarDate,
+  setCurrentTime,
+  weekDaysNumberFormat,
+  weekDaysNameFormat,
+} from "../../../utils/formatData/formatTimeAndDate";
 
 const MyCalendar = () => {
-  const [value, setValue] = useState(moment("2022-09-28"));
+  const calendarDate = setCalendarDate();
+  const currentCalendarDate = setCurrentTime(calendarDate);
 
-  const [selectedValue, setSelectedValue] = useState(moment("2022-09-28"));
+  const [value, setValue] = useState(currentCalendarDate);
+
+  const [selectedValue, setSelectedValue] = useState(currentCalendarDate);
 
   const onSelect = (newValue) => {
     setValue(newValue);
     setSelectedValue(newValue);
-    console.log(selectedValue.format("YYYY-MM-DD"));
+    console.log(selectedValue.format(formatCalendarYearMonthDay));
   };
 
   const onPanelChange = (newValue) => {

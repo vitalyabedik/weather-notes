@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import moment from "moment";
 
 import { Space, Form, Input, TimePicker, Button } from "antd";
 import { PlusCircleOutlined, ReloadOutlined } from "@ant-design/icons";
 
+import {
+  formatHourMinute,
+  setCurrentTime,
+  getCurrentTime,
+} from "../../utils/formatData/formatTimeAndDate";
 import setText from "../../redux/actions/textAction";
 import { addNote } from "../../redux/actions/notesAction";
 
@@ -46,11 +50,11 @@ const NoteForm = () => {
       </Form.Item>
       <Form.Item name="time-picker" label="Time" hasFeedback>
         <TimePicker
-          format="HH:mm"
-          value={moment(selectedTime)}
+          format={formatHourMinute}
+          value={setCurrentTime(selectedTime)}
           onSelect={(value) => {
-            const timeString = moment(value).format("HH:mm");
-            setSelectedTime(timeString);
+            const currentTime = getCurrentTime(value);
+            setSelectedTime(currentTime);
           }}
         />
       </Form.Item>
