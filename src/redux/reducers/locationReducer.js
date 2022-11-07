@@ -10,7 +10,7 @@ const initialValue = {
   error: "",
 };
 
-const weatherReducer = (state = initialValue, action) => {
+const locationReducer = (state = initialValue, action) => {
   switch (action.type) {
     case SET_LOCATION: {
       return {
@@ -42,4 +42,4 @@ const weatherReducer = (state = initialValue, action) => {
   }
 };
 
-export default weatherReducer;
+export default locationReducer;

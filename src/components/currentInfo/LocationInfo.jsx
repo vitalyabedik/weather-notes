@@ -11,13 +11,19 @@ const LocationInfo = () => {
   const isMobile = screens.xs;
 
   const currentLocation = useSelector((state) => state.location.data);
-  // const currentLocationName = currentLocation[0].country;
 
-  const currentLocationInEnglish = new Intl.DisplayNames("en", {
-    type: "region",
-  }).of("BY");
-
+  const shotCurrentCountryName = currentLocation?.[0]?.country;
+  const currentTownName = currentLocation?.[0]?.name;
   // console.log(currentLocation);
+
+  const language = "en";
+  const shotCountry = "BY";
+
+  const fullCurrentCountryNameEnglish = new Intl.DisplayNames(language, {
+    type: "region",
+  }).of(shotCountry);
+
+  console.log(currentLocation);
 
   return (
     <div className={styles.locationInfo}>
@@ -25,13 +31,15 @@ const LocationInfo = () => {
       <Row justify={isMobile ? "center" : "end"}>
         <Col className={styles.locationInfo__city}>
           <Text className={styles[`ant-typography`]} strong>
-            Soligorsk
+            {currentTownName}
           </Text>
         </Col>
       </Row>
       <Row justify={isMobile ? "center" : "end"} align="middle">
         <Col className={styles.locationInfo__country}>
-          <Text className={styles[`ant-typography`]}>Belarus</Text>
+          <Text className={styles[`ant-typography`]}>
+            {fullCurrentCountryNameEnglish}
+          </Text>
         </Col>
       </Row>
     </div>

@@ -1,5 +1,15 @@
 import { Grid, Row, Col, Typography, Tag, Image } from "antd";
 import { useSelector } from "react-redux";
+import {
+  getCurrentDay,
+  getCurrentDayName,
+} from "../../utils/formatData/formatTimeAndDate";
+import {
+  getOtherWeekDays,
+  getToday,
+} from "../../utils/formatData/formatWeather";
+
+import getWeatherIcon from "../../utils/getWeatherIcon";
 
 import styles from "./TodayForecast.module.scss";
 
@@ -12,15 +22,20 @@ const TodayForecast = () => {
 
   const weather = useSelector((state) => state.weather.data);
   const location = useSelector((state) => state.location.data);
-  // const weatherData = storeData.data;
 
-  const countryInEnglish = new Intl.DisplayNames("en", { type: "region" }).of(
-    "BY"
-  );
+  // const todayDataWeather = weather?.current;
+  // const todayDataWeather = getToday(weather[0]);
 
-  // console.log(weather);
-  // console.log(location);
-  // console.log(countryInEnglish);
+  // const todayWeather = {
+  //   id: weather?.current.dt,
+  //   icon: getWeatherIcon(weather?.current?.weather?.[0].icon),
+  //   temperature: Math.round(weather?.current?.temp),
+  // };
+  const todayWeather = {
+    id: weather?.daily[0].dt,
+    icon: getWeatherIcon(weather?.daily[0]?.weather?.[0].icon),
+    temperature: weather?.daily[0]?.temp?.day.toFixed(),
+  };
 
   return (
     <div className={styles.todayForecast}>
@@ -32,7 +47,7 @@ const TodayForecast = () => {
         <Row>
           <Col span={24}>
             <Image
-              src="https://cdn-icons-png.flaticon.com/512/5247/5247971.png"
+              src={todayWeather.icon}
               width={55}
               alt="example"
               preview={false}
@@ -47,7 +62,7 @@ const TodayForecast = () => {
           <Col span={24}>
             {" "}
             <Text className={styles[`ant-typography`]} strong>
-              12&deg;
+              {todayWeather.temperature}&deg;
             </Text>
           </Col>
         </Row>

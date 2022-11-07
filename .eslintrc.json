@@ -1,7 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "node": true
   },
   "extends": [ "eslint:recommended", "plugin:react/recommended", "airbnb", "prettier", "plugin:react/jsx-runtime"],
   "overrides": [],
@@ -24,6 +24,6 @@
     "react/jsx-props-no-spreading": "off",
     "no-unused-vars": "warn",
     "default-param-last": 0,
-    "no-param-reassign": 0
+    "no-param-reassign": 0  
   }
 }

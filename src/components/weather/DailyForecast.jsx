@@ -1,48 +1,34 @@
+import { useSelector } from "react-redux";
+
 import { Col, Row } from "antd";
 
 import ItemForecast from "./ItemForecast";
+import { getOtherWeekDays } from "../../utils/formatData/formatWeather";
+import {
+  getCurrentDay,
+  getCurrentDayName,
+} from "../../utils/formatData/formatTimeAndDate";
+import getWeatherIcon from "../../utils/getWeatherIcon";
 
 const DailyForecast = () => {
-  const items = [
-    {
-      tag: "Wed",
-      icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
-      temperature: 10,
-    },
-    {
-      tag: "Thu",
-      icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
-      temperature: 10,
-    },
-    {
-      tag: "Wed",
-      icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
-      temperature: 10,
-    },
-    {
-      tag: "Wed",
-      icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
-      temperature: 10,
-    },
-    {
-      tag: "Wed",
-      icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
-      temperature: 10,
-    },
-    {
-      tag: "Wed",
-      icon: "https://cdn-icons-png.flaticon.com/512/5247/5247971.png",
-      temperature: 10,
-    },
-  ];
+  const weather = useSelector((state) => state.weather.data);
+
+  // const dailyDataWeather = getOtherWeekDays(weather?.daily);
+  const dailyDataWeather = weather?.daily.slice(1, 7);
+  const days = dailyDataWeather?.map((item) => ({
+    id: item.dt,
+    name: getCurrentDayName(getCurrentDay(item.dt)),
+    icon: getWeatherIcon(item?.weather?.[0].icon),
+    temperature: item?.temp?.day.toFixed(),
+  }));
 
   return (
     <Row justify="space-evenly">
-      {items.map((item) => (
+      {days?.map((item) => (
         <Col xs={8} sm={8} md={4}>
           <ItemForecast
-            key={item.tag}
-            info={item.tag}
+            key={item.id}
+            info={item.name}
             icon={item.icon}
             temperature={item.temperature}
           />
