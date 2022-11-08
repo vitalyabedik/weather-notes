@@ -4,7 +4,6 @@ import { Grid, Row, Col, Typography } from "antd";
 import styles from "./TodayInfo.module.scss";
 
 import {
-  now,
   getCurrentDay,
   getCurrentDate,
   getCurrentTime,

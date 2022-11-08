@@ -18,7 +18,7 @@ const DailyForecast = () => {
   const days = dailyDataWeather?.map((item) => ({
     id: item.dt,
     name: getCurrentDayName(getCurrentDay(item.dt)),
-    icon: getWeatherIcon(item?.weather?.[0].icon),
+    icon: getWeatherIcon(item?.weather?.[0]?.icon),
     temperature: item?.temp?.day.toFixed(),
   }));
 

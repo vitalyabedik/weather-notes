@@ -14,7 +14,6 @@ const LocationInfo = () => {
 
   const shotCurrentCountryName = currentLocation?.[0]?.country;
   const currentTownName = currentLocation?.[0]?.name;
-  // console.log(currentLocation);
 
   const language = "en";
   const shotCountry = "BY";
@@ -22,8 +21,6 @@ const LocationInfo = () => {
   const fullCurrentCountryNameEnglish = new Intl.DisplayNames(language, {
     type: "region",
   }).of(shotCountry);
-
-  console.log(currentLocation);
 
   return (
     <div className={styles.locationInfo}>

@@ -26,14 +26,9 @@ const TodayForecast = () => {
   // const todayDataWeather = weather?.current;
   // const todayDataWeather = getToday(weather[0]);
 
-  // const todayWeather = {
-  //   id: weather?.current.dt,
-  //   icon: getWeatherIcon(weather?.current?.weather?.[0].icon),
-  //   temperature: Math.round(weather?.current?.temp),
-  // };
   const todayWeather = {
     id: weather?.daily[0].dt,
-    icon: getWeatherIcon(weather?.daily[0]?.weather?.[0].icon),
+    icon: getWeatherIcon(weather?.daily[0]?.weather?.[0]?.icon),
     temperature: weather?.daily[0]?.temp?.day.toFixed(),
   };
 
