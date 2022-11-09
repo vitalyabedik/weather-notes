@@ -5,8 +5,9 @@ import { Col, Row } from "antd";
 import ItemForecast from "./ItemForecast";
 import { getOtherWeekDays } from "../../utils/formatData/formatWeather";
 import {
-  getCurrentDay,
-  getCurrentDayName,
+  convertTimestamp,
+  setFormat,
+  formatWeekday,
 } from "../../utils/formatData/formatTimeAndDate";
 import getWeatherIcon from "../../utils/getWeatherIcon";
 
@@ -17,7 +18,7 @@ const DailyForecast = () => {
   const dailyDataWeather = weather?.daily.slice(1, 7);
   const days = dailyDataWeather?.map((item) => ({
     id: item.dt,
-    name: getCurrentDayName(getCurrentDay(item.dt)),
+    name: setFormat(convertTimestamp(item.dt), formatWeekday),
     icon: getWeatherIcon(item?.weather?.[0]?.icon),
     temperature: item?.temp?.day.toFixed(),
   }));

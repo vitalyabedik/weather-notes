@@ -1,9 +1,7 @@
-import { Grid, Row, Col, Typography, Tag, Image } from "antd";
 import { useSelector } from "react-redux";
-import {
-  getCurrentDay,
-  getCurrentDayName,
-} from "../../utils/formatData/formatTimeAndDate";
+
+import { Grid, Row, Col, Typography, Tag, Image } from "antd";
+
 import {
   getOtherWeekDays,
   getToday,
@@ -27,9 +25,9 @@ const TodayForecast = () => {
   // const todayDataWeather = getToday(weather[0]);
 
   const todayWeather = {
-    id: weather?.daily[0].dt,
-    icon: getWeatherIcon(weather?.daily[0]?.weather?.[0]?.icon),
-    temperature: weather?.daily[0]?.temp?.day.toFixed(),
+    id: weather?.current.dt,
+    icon: getWeatherIcon(weather?.current?.weather?.[0]?.icon),
+    temperature: weather?.current?.temp?.toFixed(),
   };
 
   return (

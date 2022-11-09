@@ -11,10 +11,6 @@ import HourlyForecast from "./HourlyForecast";
 
 import { loadWeather } from "../../redux/actions/weatherAction";
 import { loadLocation } from "../../redux/actions/locationAction";
-import {
-  getCurrentDay,
-  getCurrentTime,
-} from "../../utils/formatData/formatTimeAndDate";
 
 const Weather = ({ isDailyForecast }) => {
   // const [currentLocation, setCurrentLocation] = useState({});
@@ -23,7 +19,7 @@ const Weather = ({ isDailyForecast }) => {
   // const [responseData, setResponseData] = useState({});
 
   const [currentCoordinates, setCurrentCoordinates] = useState("");
-  const { lat, lon, time } = currentCoordinates;
+  const { lat, lon } = currentCoordinates;
 
   const loadingLocation = useSelector((state) => state.location.loading);
   const dispatch = useDispatch();
@@ -34,7 +30,6 @@ const Weather = ({ isDailyForecast }) => {
         const data = {
           lat: position.coords.latitude,
           lon: position.coords.longitude,
-          time: getCurrentTime(getCurrentDay(position.timestamp)),
         };
         setCurrentCoordinates(data);
       }
