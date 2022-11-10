@@ -1,19 +1,13 @@
 .wrapper {
   height: 100vh;
-  width: 100vw;
-  background: url(https://www.nasa.gov/sites/default/files/thumbnails/image/smap-weather.jpg);
-  background-position: center center;
+  background: var(--background-image);
+  background-position: center;
   background-size: cover;
-  position: relative;
-  overflow: hidden;
-  position: absolute;
+  background-repeat: no-repeat;
 }
 
 .container {
   max-width: 120rem;
   margin: 0 auto;
   padding: 0 1.6rem;
-  // vertical-align: middle;
-  // top: 40%;
-  // position: relative;
 }
