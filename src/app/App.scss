@@ -1,14 +1,13 @@
 @import "~antd/dist/antd.css";
-@import "../assets/styles/index.scss";
 
 .app {
   .ant-typography {
-    color: $white;
+    color: var(--text-color-white);
   }
 
   .ant-tag {
-    color: $white;
-    background-color: $grayBackgroundTag;
+    color: var(--text-color-white);
+    background-color: var(--background-color-tag-gray);
     border: none;
   }
 

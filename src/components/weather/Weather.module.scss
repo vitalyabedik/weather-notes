@@ -1,6 +1,4 @@
-@import "../../assets/styles/index.scss";
-
 .weather {
-  background-color: $grayBackgroundContainer;
+  background-color: var(--background-color-container-gray);
   margin-top: 10rem;
 }
