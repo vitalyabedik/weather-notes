@@ -51,9 +51,8 @@ const HourlyForecast = () => {
     <>
       <Row className={styles.hourlyForecast} justify="space-around">
         {sevenHours.map((item) => (
-          <Col xs={8} sm={8} md={4}>
+          <Col xs={8} sm={8} md={4} key={item.id}>
             <ItemForecast
-              key={item.id}
               info={item.time}
               icon={item.icon}
               temperature={item.temperature}

@@ -22,6 +22,7 @@ const Weather = ({ isDailyForecast }) => {
   const { lat, lon } = currentCoordinates;
 
   const loadingLocation = useSelector((state) => state.location.loading);
+  const weather = useSelector((state) => state.weather.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,8 +37,8 @@ const Weather = ({ isDailyForecast }) => {
     });
 
     if (lat) {
-      dispatch(loadWeather(lat, lon));
       dispatch(loadLocation(lat, lon));
+      dispatch(loadWeather(lat, lon));
     }
   }, [lat, lon]);
 
@@ -113,19 +114,21 @@ const Weather = ({ isDailyForecast }) => {
   //   dispatch(loadWeather(lat, lon));
   // }, []);
 
-  return !loadingLocation ? (
+  return (
     <div className={styles.weather}>
-      <Row align="middle">
-        <Col xs={24} sm={8} md={6} lg={5} xl={4}>
-          <TodayForecast />
-        </Col>
-        <Col xs={24} sm={16} md={18} lg={19} xl={20}>
-          <div>{isDailyForecast ? <DailyForecast /> : <HourlyForecast />}</div>
-        </Col>
-      </Row>
+      {weather && (
+        <Row align="middle">
+          <Col xs={24} sm={8} md={6} lg={5} xl={4}>
+            <TodayForecast />
+          </Col>
+          <Col xs={24} sm={16} md={18} lg={19} xl={20}>
+            <div>
+              {isDailyForecast ? <DailyForecast /> : <HourlyForecast />}
+            </div>
+          </Col>
+        </Row>
+      )}
     </div>
-  ) : (
-    "Loading..."
   );
 };
 

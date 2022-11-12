@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { Grid, Space, Col, Row } from "antd";
+import { Grid, Space, Col, Row, Form, Input, Button } from "antd";
 
 import styles from "./Header.module.scss";
 
 import { MySearch, MySwitch } from "../UI";
 import Calendar from "../calendar";
+import {
+  getWeatherByCityName,
+  setWeatherLoading,
+} from "../../redux/actions/weatherAction";
 
 const { useBreakpoint } = Grid;
 
@@ -13,13 +18,51 @@ const Header = ({ changeForecastOption }) => {
   const screens = useBreakpoint();
   const isMobile = screens.xs;
 
+  const [form] = Form.useForm();
+
   const [visible, setVisible] = useState(false);
+  const [city, setCity] = useState("");
+
+  const weather = useSelector((store) => store.weather.data);
+  const dispatch = useDispatch();
+
+  const changeHandler = (e) => {
+    setCity(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    if (city.trim() === "") {
+      alert("Введите город");
+    }
+
+    dispatch(setWeatherLoading);
+    dispatch(getWeatherByCityName(city));
+    setCity("");
+    console.log(city);
+  };
+
+  console.log(weather);
 
   return (
     <div className={styles.header}>
       <Row justify="space-around" gutter={[16, 16]}>
         <Col xs={24} sm={12} md={8}>
-          <MySearch className={styles.header__search} />
+          <Form form={form} autoComplete="off">
+            <Input
+              value={city}
+              onChange={changeHandler}
+              placeholder="Enter a city..."
+              autoFocus
+              allowClear
+            />
+            <Button onClick={submitHandler} type="primary" htmlType="submit">
+              Search
+            </Button>
+          </Form>
+          {/* <MySearch
+            className={styles.header__search}
+            onSearch={submitHandler}
+          /> */}
         </Col>
         <Col
           className={

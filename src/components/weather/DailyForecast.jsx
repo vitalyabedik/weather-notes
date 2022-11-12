@@ -16,6 +16,8 @@ const DailyForecast = () => {
 
   // const dailyDataWeather = getOtherWeekDays(weather?.daily);
   const dailyDataWeather = weather?.daily.slice(1, 7);
+  // const dailyDataWeather = weather?.daily;
+
   const days = dailyDataWeather?.map((item) => ({
     id: item.dt,
     name: setFormat(convertTimestamp(item.dt), formatWeekday),
@@ -26,9 +28,8 @@ const DailyForecast = () => {
   return (
     <Row justify="space-evenly">
       {days?.map((item) => (
-        <Col xs={8} sm={8} md={4}>
+        <Col xs={8} sm={8} md={4} key={item.id}>
           <ItemForecast
-            key={item.id}
             info={item.name}
             icon={item.icon}
             temperature={item.temperature}

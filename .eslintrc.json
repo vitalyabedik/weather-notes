@@ -24,6 +24,6 @@
     "react/jsx-props-no-spreading": "off",
     "no-unused-vars": "warn",
     "default-param-last": 0,
-    "no-param-reassign": 0  
+    "no-param-reassign": 0
   }
 }

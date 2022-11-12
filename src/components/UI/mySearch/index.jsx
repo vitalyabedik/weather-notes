@@ -2,9 +2,7 @@ import { Input } from "antd";
 
 const { Search } = Input;
 
-const onSearch = (value) => console.log(value);
-
-const MySearch = () => (
+const MySearch = (onSearch) => (
   <div>
     {" "}
     <Search placeholder="Enter a city..." allowClear onSearch={onSearch} />
