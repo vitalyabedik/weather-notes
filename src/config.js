@@ -12,10 +12,6 @@ export const openWeatherAPI = {
   getWeatherForecast(lat, lon) {
     return `${BASE_WEATHER_URL_OPENWEATHER}onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${APIKey}`;
   },
-
-  // getDailyForecast(lat, lon) {
-  //   return `${BASE_WEATHER_URL_OPENWEATHER}forecast/daily?lat=${lat}&lon=${lon}&cnt={cnt}&units=metric&appid=${OPENWEATHER_API_KEY}`;
-  // },
 };
 
 export const geocodingAPI = {

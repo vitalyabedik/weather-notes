@@ -15,7 +15,7 @@ const DailyForecast = () => {
   const weather = useSelector((state) => state.weather.data);
 
   // const dailyDataWeather = getOtherWeekDays(weather?.daily);
-  const dailyDataWeather = weather?.daily.slice(1, 7);
+  const dailyDataWeather = weather?.daily?.slice(1, 7);
   // const dailyDataWeather = weather?.daily;
 
   const days = dailyDataWeather?.map((item) => ({

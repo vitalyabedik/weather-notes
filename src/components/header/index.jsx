@@ -9,8 +9,10 @@ import { MySearch, MySwitch } from "../UI";
 import Calendar from "../calendar";
 import {
   getWeatherByCityName,
+  loadWeather,
   setWeatherLoading,
 } from "../../redux/actions/weatherAction";
+import { loadWeatherByCity } from "../../redux/actions/locationAction";
 
 const { useBreakpoint } = Grid;
 
@@ -24,6 +26,7 @@ const Header = ({ changeForecastOption }) => {
   const [city, setCity] = useState("");
 
   const weather = useSelector((store) => store.weather.data);
+  const location = useSelector((store) => store.location);
   const dispatch = useDispatch();
 
   const changeHandler = (e) => {
@@ -32,16 +35,17 @@ const Header = ({ changeForecastOption }) => {
 
   const submitHandler = (e) => {
     if (city.trim() === "") {
-      alert("Введите город");
+      console.log("Введите город");
     }
 
     dispatch(setWeatherLoading);
-    dispatch(getWeatherByCityName(city));
-    setCity("");
-    console.log(city);
-  };
+    dispatch(loadWeatherByCity(city));
+    // const { lat, lon } = location.data[0];
 
-  console.log(weather);
+    // dispatch(loadWeather(lat, lon));
+
+    setCity("");
+  };
 
   return (
     <div className={styles.header}>
