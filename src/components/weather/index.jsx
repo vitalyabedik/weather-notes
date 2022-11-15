@@ -8,9 +8,10 @@ import styles from "./Weather.module.scss";
 import TodayForecast from "./TodayForecast";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
-
-import { loadWeather } from "../../redux/actions/weatherAction";
-import { loadLocation } from "../../redux/actions/locationAction";
+import {
+  getLocationInfoByCoordinates,
+  getWeatherForecastByCoordinates,
+} from "../../redux/thunks";
 
 const Weather = ({ isDailyForecast }) => {
   const [currentCoordinates, setCurrentCoordinates] = useState("");
@@ -52,8 +53,8 @@ const Weather = ({ isDailyForecast }) => {
     });
 
     if (lat) {
-      dispatch(loadLocation(lat, lon));
-      dispatch(loadWeather(lat, lon));
+      dispatch(getLocationInfoByCoordinates(lat, lon));
+      dispatch(getWeatherForecastByCoordinates(lat, lon));
     }
   }, [lat, lon]);
 

@@ -4,7 +4,7 @@ import {
   SET_WEATHER_LOADING,
 } from "./actionTypes";
 
-const APIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
+// const APIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
 export const setWeather = (data) => ({
   type: SET_WEATHER,
@@ -20,16 +20,16 @@ export const setWeatherLoading = () => ({
   type: SET_WEATHER_LOADING,
 });
 
-export const loadWeather =
-  (lat, lon) =>
-  (dispatch, _, { openWeatherAPI }) => {
-    dispatch(setWeatherLoading);
+// export const loadWeather =
+//   (lat, lon) =>
+//   (dispatch, _, { openWeatherAPI }) => {
+//     dispatch(setWeatherLoading());
 
-    openWeatherAPI
-      .getWeatherForecast(lat, lon)
-      .then(({ data }) => dispatch(setWeather(data)))
-      .catch((error) => dispatch(setWeatherError(error.message)));
-  };
+//     openWeatherAPI
+//       .getWeatherForecast(lat, lon)
+//       .then(({ data }) => dispatch(setWeather(data)))
+//       .catch((error) => dispatch(setWeatherError(error.message)));
+//   };
 
 // export const getWeatherByCityName = (city) => async (dispatch) => {
 //   try {

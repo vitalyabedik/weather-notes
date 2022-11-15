@@ -8,11 +8,11 @@ import styles from "./Header.module.scss";
 import { MySearch, MySwitch } from "../UI";
 import Calendar from "../calendar";
 import {
-  getWeatherByCityName,
   loadWeather,
   setWeatherLoading,
 } from "../../redux/actions/weatherAction";
 import { loadWeatherByCity } from "../../redux/actions/locationAction";
+import { getWeatherForecastByCityName } from "../../redux/thunks";
 
 const { useBreakpoint } = Grid;
 
@@ -38,8 +38,7 @@ const Header = ({ changeForecastOption }) => {
       console.log("Введите город");
     }
 
-    dispatch(setWeatherLoading);
-    dispatch(loadWeatherByCity(city));
+    dispatch(getWeatherForecastByCityName(city));
     // const { lat, lon } = location.data[0];
 
     // dispatch(loadWeather(lat, lon));
