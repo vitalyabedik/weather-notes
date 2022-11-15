@@ -12,7 +12,7 @@ const AppLayout = () => {
   const [background, setBackground] = useState("clouds");
   const weather = useSelector((state) => state.weather.data);
 
-  const weatherMain = weather?.current?.weather?.[0]?.main.toLowerCase();
+  const weatherMain = weather?.current?.weather?.[0]?.main?.toLowerCase();
 
   const [isDailyForecast, setIsDailyForecast] = useState(true);
 

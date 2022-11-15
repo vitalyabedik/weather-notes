@@ -21,11 +21,11 @@ export const setLocationLoading = () => ({
 
 export const loadLocation =
   (lat, lon) =>
-  (dispatch, _, { client, geocodingAPI }) => {
+  (dispatch, _, { geocodingAPI }) => {
     dispatch(setLocationLoading);
 
-    client
-      .get(geocodingAPI.getPlaceNameByCoordinates(lat, lon))
+    geocodingAPI
+      .getPlaceNameByCoordinates(lat, lon)
       .then(({ data }) => dispatch(setLocation(data)))
       .catch((error) => dispatch(setLocationError(error.message)));
   };
@@ -43,11 +43,11 @@ export const loadLocation =
 
 export const loadWeatherByCity =
   (city) =>
-  (dispatch, _, { client, geocodingAPI }) => {
+  (dispatch, _, { geocodingAPI }) => {
     dispatch(setLocationLoading);
 
-    client
-      .get(geocodingAPI.getCoordinatesByCity(city))
+    geocodingAPI
+      .getCoordinatesByCity(city)
       .then(({ data }) => dispatch(setLocation(data)))
       .then((location) =>
         dispatch(loadWeather(location.payload[0].lat, location.payload[0].lon))
