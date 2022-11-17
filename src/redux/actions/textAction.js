@@ -1,8 +1,8 @@
 import { SET_TEXT } from "./actionTypes";
 
-const setText = (data) => ({
+const setText = (text) => ({
   type: SET_TEXT,
-  payload: data,
+  payload: text,
 });
 
 export default setText;

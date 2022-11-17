@@ -10,26 +10,32 @@ import {
   getCurrentTime,
 } from "../../utils/formatData/formatTimeAndDate";
 import setText from "../../redux/actions/textAction";
-import { addNote } from "../../redux/actions/notesAction";
+import useActions from "../../hooks/useActions";
 
 const NoteForm = () => {
   const [selectedTime, setSelectedTime] = useState(null);
 
-  const dispatch = useDispatch();
   const text = useSelector((store) => store.text);
+
+  //! why useAction not working for setText !!!
+  const dispatch = useDispatch();
+  const { addNote } = useActions();
 
   const [form] = Form.useForm();
 
+  const handleText = (e) => {
+    dispatch(setText(e.target.value));
+  };
+
   const handleAddNote = (event) => {
     event.preventDefault();
-    dispatch(
-      addNote({
-        id: Date.now(),
-        time: selectedTime,
-        text,
-        editing: false,
-      })
-    );
+
+    addNote({
+      id: Date.now(),
+      time: selectedTime,
+      text,
+      editing: false,
+    });
     form.resetFields();
   };
 
@@ -38,17 +44,47 @@ const NoteForm = () => {
   };
 
   return (
-    <Form form={form} autoComplete="off">
-      <Form.Item name="note" label="Text">
+    <Form
+      form={form}
+      autoComplete="off"
+      // onFinish={(values) => {
+      //   console.log({ values });
+      // }}
+      // onFinishFailed={(error) => {
+      //   console.log({ error });
+      // }}
+    >
+      <Form.Item
+        name="text"
+        label="Text"
+        hasFeedback
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: "Please enter your note!",
+        //   },
+        //   { whitespace: true },
+        // ]}
+      >
         <Input
           value={text}
-          onChange={(e) => dispatch(setText(e.target.value))}
+          onChange={handleText}
           placeholder="Enter new note"
           autoFocus
           allowClear
         />
       </Form.Item>
-      <Form.Item name="time-picker" label="Time" hasFeedback>
+      <Form.Item
+        name="time-picker"
+        label="Time"
+        hasFeedback
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: "Please select your country!",
+        //   },
+        // ]}
+      >
         <TimePicker
           format={formatHourMinute}
           value={setCurrentTime(selectedTime)}

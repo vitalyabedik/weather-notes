@@ -1,18 +1,13 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { Grid, Space, Col, Row, Form, Input, Button } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
 import styles from "./Header.module.scss";
 
 import { MySearch, MySwitch } from "../UI";
 import Calendar from "../calendar";
-import {
-  loadWeather,
-  setWeatherLoading,
-} from "../../redux/actions/weatherAction";
-import { loadWeatherByCity } from "../../redux/actions/locationAction";
-import { getWeatherForecastByCityName } from "../../redux/thunks";
+import useActions from "../../hooks/useActions";
 
 const { useBreakpoint } = Grid;
 
@@ -25,9 +20,7 @@ const Header = ({ changeForecastOption }) => {
   const [visible, setVisible] = useState(false);
   const [city, setCity] = useState("");
 
-  const weather = useSelector((store) => store.weather.data);
-  const location = useSelector((store) => store.location);
-  const dispatch = useDispatch();
+  const { getWeatherForecastByCityName } = useActions();
 
   const changeHandler = (e) => {
     setCity(e.target.value);
@@ -38,11 +31,7 @@ const Header = ({ changeForecastOption }) => {
       console.log("Введите город");
     }
 
-    dispatch(getWeatherForecastByCityName(city));
-    // const { lat, lon } = location.data[0];
-
-    // dispatch(loadWeather(lat, lon));
-
+    getWeatherForecastByCityName(city);
     setCity("");
   };
 
@@ -50,7 +39,7 @@ const Header = ({ changeForecastOption }) => {
     <div className={styles.header}>
       <Row justify="space-around" gutter={[16, 16]}>
         <Col xs={24} sm={12} md={8}>
-          <Form form={form} autoComplete="off">
+          <Form className={styles.header__form} form={form} autoComplete="off">
             <Input
               value={city}
               onChange={changeHandler}
@@ -58,9 +47,11 @@ const Header = ({ changeForecastOption }) => {
               autoFocus
               allowClear
             />
-            <Button onClick={submitHandler} type="primary" htmlType="submit">
-              Search
-            </Button>
+            <Button
+              onClick={submitHandler}
+              htmlType="submit"
+              icon={<SearchOutlined />}
+            />
           </Form>
           {/* <MySearch
             className={styles.header__search}

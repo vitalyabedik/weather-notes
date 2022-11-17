@@ -1,14 +1,12 @@
-import { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
 import moment from "moment";
+import { useState } from "react";
 
-import { Form, TimePicker, Input, Tag, Typography } from "antd";
+import { TimePicker, Input, Tag, Typography } from "antd";
 import { SaveOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import styles from "./MyListItem.module.scss";
 
-// import {setText} from '../../../redux/actions/textAction';
-import { deleteNote, updateNote } from "../../../redux/actions/notesAction";
+import useActions from "../../../hooks/useActions";
 
 const { Text } = Typography;
 
@@ -17,26 +15,35 @@ const ListItem = ({ item, showItemsActions }) => {
   const [time, setTime] = useState(item.time);
   const [isEditing, setIsEditing] = useState(false);
 
-  const [form] = Form.useForm();
+  const { deleteNote, updateNote } = useActions();
 
-  const dispatch = useDispatch();
+  const handleText = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleTime = (value) => {
+    const timeString = moment(value).format("HH:mm");
+    setTime(timeString);
+  };
 
   const handleEditNote = () => {
     if (isEditing) {
       const newNote = text;
-      dispatch(updateNote(newNote));
+      updateNote(newNote);
     }
     setIsEditing(!isEditing);
   };
 
+  const handleDeleteNote = () => {
+    deleteNote(item.id);
+  };
+
   const handleUpdateNote = () => {
-    dispatch(
-      updateNote({
-        id: item.id,
-        updatedNoteText: text,
-        updatedNoteTime: time,
-      })
-    );
+    updateNote({
+      id: item.id,
+      updatedNoteText: text,
+      updatedNoteTime: time,
+    });
     setIsEditing(!isEditing);
   };
 
@@ -58,21 +65,13 @@ const ListItem = ({ item, showItemsActions }) => {
               <TimePicker
                 format="HH:mm"
                 defaultValue={moment(time, "HH:mm")}
-                onSelect={(value) => {
-                  const timeString = moment(value).format("HH:mm");
-                  setTime(timeString);
-                }}
+                onSelect={handleTime}
                 autoFocus
               />
             </div>
             <div className={styles[`listItem__input-text`]}>
               {" "}
-              <Input
-                compact
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                allowClear
-              />
+              <Input compact value={text} onChange={handleText} allowClear />
             </div>
           </div>
         )}
@@ -83,7 +82,7 @@ const ListItem = ({ item, showItemsActions }) => {
             <div>
               <EditOutlined onClick={handleEditNote} />
               <DeleteOutlined
-                onClick={() => dispatch(deleteNote(item.id))}
+                onClick={handleDeleteNote}
                 className={styles[`listItem__icon-delete`]}
               />
             </div>

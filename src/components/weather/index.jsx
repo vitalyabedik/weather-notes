@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Col, Row } from "antd";
 
@@ -8,18 +8,16 @@ import styles from "./Weather.module.scss";
 import TodayForecast from "./TodayForecast";
 import DailyForecast from "./DailyForecast";
 import HourlyForecast from "./HourlyForecast";
-import {
-  getLocationInfoByCoordinates,
-  getWeatherForecastByCoordinates,
-} from "../../redux/thunks";
+import { MyAlert, MyLoader } from "../UI";
+import useActions from "../../hooks/useActions";
 
 const Weather = ({ isDailyForecast }) => {
   const [currentCoordinates, setCurrentCoordinates] = useState("");
   const { lat, lon } = currentCoordinates;
 
-  const loadingLocation = useSelector((state) => state.location.loading);
-  const weather = useSelector((state) => state.weather.data);
-  const dispatch = useDispatch();
+  const { data, loading, error } = useSelector((state) => state.weather);
+  const { getLocationInfoByCoordinates, getWeatherForecastByCoordinates } =
+    useActions();
 
   // const getWeatherData = () => {
   //   if (!navigator.geolocation) {
@@ -44,43 +42,102 @@ const Weather = ({ isDailyForecast }) => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       if (position.coords.latitude) {
-        const data = {
+        const positionData = {
           lat: position.coords.latitude,
           lon: position.coords.longitude,
         };
-        setCurrentCoordinates(data);
+        setCurrentCoordinates(positionData);
       }
     });
 
     if (lat) {
-      dispatch(getLocationInfoByCoordinates(lat, lon));
-      dispatch(getWeatherForecastByCoordinates(lat, lon));
+      getLocationInfoByCoordinates(lat, lon);
+      getWeatherForecastByCoordinates(lat, lon);
     }
   }, [lat, lon]);
 
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     // if (!position) return;
+
+  //     if (position.coords.latitude) {
+  //       const data = {
+  //         lat: position.coords.latitude,
+  //         lon: position.coords.longitude,
+  //       };
+  //       setCurrentCoordinates(data);
+  //     }
+  //   });
+
+  //   if (currentCoordinates) {
+  //     dispatch(getLocationInfoByCoordinates(lat, lon));
+  //     dispatch(getWeatherForecastByCoordinates(lat, lon));
+  //   }
+  // }, [lat, lon]);
+
   return (
     <div className={styles.weather}>
-      {weather ? (
-        <Row align="middle">
-          <Col xs={24} sm={8} md={6} lg={5} xl={4}>
-            <TodayForecast />
-          </Col>
-          <Col xs={24} sm={16} md={18} lg={19} xl={20}>
-            <div>
-              {isDailyForecast ? <DailyForecast /> : <HourlyForecast />}
-            </div>
-          </Col>
+      {error && (
+        <Col align="middle" justify="center">
+          <MyAlert />
+        </Col>
+      )}
+      {loading ? (
+        <Row align="middle" justify="center">
+          <MyLoader />
         </Row>
       ) : (
-        <h2 style={{ textAlign: "center", fontSize: "50px", color: "red" }}>
-          Loading...
-        </h2>
+        data && (
+          <Row align="middle">
+            <Col xs={24} sm={8} md={6} lg={5} xl={4}>
+              <TodayForecast />
+            </Col>
+            <Col xs={24} sm={16} md={18} lg={19} xl={20}>
+              <div>
+                {isDailyForecast ? <DailyForecast /> : <HourlyForecast />}
+              </div>
+            </Col>
+          </Row>
+        )
       )}
     </div>
   );
 };
 
 export default Weather;
+
+//   return (
+//     <div className={styles.weather}>
+//       {weather ? (
+//         <Row align="middle">
+//           <Col xs={24} sm={8} md={6} lg={5} xl={4}>
+//             <TodayForecast />
+//           </Col>
+//           <Col xs={24} sm={16} md={18} lg={19} xl={20}>
+//             <div>
+//               {isDailyForecast ? <DailyForecast /> : <HourlyForecast />}
+//             </div>
+//           </Col>
+//         </Row>
+//       ) : (
+//         <Spin
+//           style={{
+//             margin: "20px 0",
+//             marginBottom: "20px",
+//             padding: "30px 50px",
+//             textAlign: "center",
+//             borderRadius: " 4px",
+//             fontSize: "30px",
+//           }}
+//           tip="Loading..."
+//           size="large"
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Weather;
 
 // import axios from "axios";
 // import { useState, useEffect } from "react";

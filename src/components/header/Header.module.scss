@@ -2,9 +2,13 @@
   background-color: var(--background-color-container-gray);
   padding: 1.6rem;
 
-  &__search {
-    text-align: left;
+  &__form {
+    display: flex;
   }
+
+  // &__search {
+  //   text-align: left;
+  // }
 
   &__items-center {
     text-align: center;

@@ -1,4 +1,5 @@
-import {
+import { SET_LOCATION, SET_LOCATION_ERROR } from "../actions/actionTypes";
+import locationAction, {
   setLocation,
   setLocationLoading,
   setLocationError,
@@ -57,4 +58,21 @@ export const getWeatherForecastByCityName =
         dispatch(getWeatherForecastByCoordinates(lat, lon));
       })
       .catch((error) => dispatch(setLocationError(error.message)));
+  };
+
+// !!! async/await
+
+export const fetchLocationByCoordinates =
+  (lat, lon) =>
+  async (dispatch, _, { geocodingAPI }) => {
+    try {
+      dispatch(setLocationLoading());
+      const response = await geocodingAPI.getPlaceNameByCoordinates(lat, lon);
+      dispatch(setLocation(response.data));
+    } catch (e) {
+      dispatch({
+        type: SET_LOCATION_ERROR,
+        payload: "Произошла ошибка при загрузке локации!",
+      });
+    }
   };
