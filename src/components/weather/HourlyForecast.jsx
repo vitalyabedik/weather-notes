@@ -67,8 +67,8 @@ const HourlyForecast = () => {
         }
         onClick={() => {
           if (firstElement > 0) {
-            setFirstElement(firstElement - 1);
-            setLastElement(lastElement - 1);
+            setFirstElement((prevFirstElement) => prevFirstElement - 1);
+            setLastElement((prevLastElement) => prevLastElement - 1);
           }
         }}
       />
@@ -78,9 +78,9 @@ const HourlyForecast = () => {
           <RightOutlined className={styles[`hourlyForecast__button-icon`]} />
         }
         onClick={() => {
-          if (lastElement <= sevenHours.length) {
-            setFirstElement(firstElement + 1);
-            setLastElement(lastElement + 1);
+          if (lastElement < hours.length) {
+            setFirstElement((prevFirstElement) => prevFirstElement + 1);
+            setLastElement((prevLastElement) => prevLastElement + 1);
           }
         }}
       />
