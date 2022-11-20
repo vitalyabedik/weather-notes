@@ -15,6 +15,3 @@ export const SET_LOCATION_LOADING = "SET_LOCATION_LOADING";
 export const SET_WEATHER = "SET_WEATHER";
 export const SET_WEATHER_ERROR = "SET_WEATHER_ERROR";
 export const SET_WEATHER_LOADING = "SET_WEATHER_LOADING";
-
-// alert
-export const SET_ALERT = "SET_ALERT";

@@ -4,8 +4,6 @@ import {
   SET_WEATHER_LOADING,
 } from "./actionTypes";
 
-// const APIKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-
 export const setWeather = (data) => ({
   type: SET_WEATHER,
   payload: data,

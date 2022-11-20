@@ -20,7 +20,12 @@ const weatherReducer = (state = initialValue, action) => {
         error: "",
       };
     }
-
+    case SET_WEATHER_LOADING: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
     case SET_WEATHER_ERROR: {
       return {
         ...state,
@@ -28,14 +33,6 @@ const weatherReducer = (state = initialValue, action) => {
         loading: false,
       };
     }
-
-    case SET_WEATHER_LOADING: {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-
     default: {
       return state;
     }
