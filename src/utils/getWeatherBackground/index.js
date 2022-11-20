@@ -19,6 +19,9 @@ const getWeatherBackground = (data) => {
     case "Fog":
       backgroundImage = fog;
       break;
+    case "Mist":
+      backgroundImage = fog;
+      break;
     case "Drizzle":
       backgroundImage = drizzle;
       break;
