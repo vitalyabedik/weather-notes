@@ -1,9 +1,9 @@
 import { Alert } from "antd";
 
-const MyAlert = () => (
+const MyAlert = ({ description }) => (
   <Alert
     message="Error"
-    description="Weather forecast error"
+    description={description}
     type="error"
     showIcon
     closable

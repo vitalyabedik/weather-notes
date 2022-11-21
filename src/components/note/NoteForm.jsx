@@ -47,24 +47,24 @@ const NoteForm = () => {
     <Form
       form={form}
       autoComplete="off"
-      // onFinish={(values) => {
-      //   console.log({ values });
-      // }}
-      // onFinishFailed={(error) => {
-      //   console.log({ error });
-      // }}
+      onFinish={(values) => {
+        console.log({ values });
+      }}
+      onFinishFailed={(error) => {
+        console.log({ error });
+      }}
     >
       <Form.Item
         name="text"
         label="Text"
         hasFeedback
-        // rules={[
-        //   {
-        //     required: true,
-        //     message: "Please enter your note!",
-        //   },
-        //   { whitespace: true },
-        // ]}
+        rules={[
+          {
+            required: true,
+            message: "Please enter your note!",
+          },
+          { whitespace: true },
+        ]}
       >
         <Input
           value={text}
@@ -78,12 +78,12 @@ const NoteForm = () => {
         name="time-picker"
         label="Time"
         hasFeedback
-        // rules={[
-        //   {
-        //     required: true,
-        //     message: "Please select your country!",
-        //   },
-        // ]}
+        rules={[
+          {
+            required: true,
+            message: "Please select note time!",
+          },
+        ]}
       >
         <TimePicker
           format={formatHourMinute}
@@ -104,9 +104,10 @@ const NoteForm = () => {
           >
             Add note
           </Button>
-          <Button htmlType="button" onClick={onReset} icon={<ReloadOutlined />}>
+
+          {/* <Button htmlType="button" onClick={onReset} icon={<ReloadOutlined />}>
             Reset
-          </Button>
+          </Button> */}
         </Space>
       </Form.Item>
     </Form>
