@@ -20,7 +20,6 @@ const locationReducer = (state = initialValue, action) => {
         error: "",
       };
     }
-
     case SET_LOCATION_ERROR: {
       return {
         ...state,
@@ -28,14 +27,12 @@ const locationReducer = (state = initialValue, action) => {
         loading: false,
       };
     }
-
     case SET_LOCATION_LOADING: {
       return {
         ...state,
         loading: true,
       };
     }
-
     default: {
       return state;
     }

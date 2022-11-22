@@ -1,3 +1,9 @@
+// app
+export const APP_CALENDAR_OPEN = "APP_CALENDAR_OPEN";
+export const APP_CALENDAR_CLOSE = "APP_CALENDAR_CLOSE";
+export const APP_NOTE_OPEN = "APP_NOTE_OPEN";
+export const APP_NOTE_CLOSE = "APP_NOTE_CLOSE";
+
 // text
 export const SET_TEXT = "SET_TEXT";
 
