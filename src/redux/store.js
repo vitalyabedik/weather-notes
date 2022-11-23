@@ -1,13 +1,22 @@
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 import rootReducer from "./reducers";
 import openWeatherAPI from "../api/openWeatherAPI";
 import geocodingAPI from "../api/geocodingAPI";
 
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 const store = createStore(
-  rootReducer,
+  persistedReducer,
   composeWithDevTools(
     applyMiddleware(
       thunk.withExtraArgument({
@@ -17,26 +26,6 @@ const store = createStore(
     )
   )
 );
-export default store;
 
-// import axios from "axios";
-// import { createStore, applyMiddleware } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-// import thunk from "redux-thunk";
-
-// import rootReducer from "./reducers";
-// import { openWeatherAPI, geocodingAPI } from "../config";
-
-// const store = createStore(
-//   rootReducer,
-//   composeWithDevTools(
-//     applyMiddleware(
-//       thunk.withExtraArgument({
-//         client: axios,
-//         openWeatherAPI,
-//         geocodingAPI,
-//       })
-//     )
-//   )
-// );
-// export default store;
+export { store };
+export const persistor = persistStore(store);
