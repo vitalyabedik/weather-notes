@@ -1,44 +1,20 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 
-const MyModal = ({
-  children,
-  title,
-  visible,
-  setVisible,
-  width,
-  type,
-  icon,
-  ghost,
-}) => {
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleOk = () => {
-    setVisible(false);
-  };
-
+const MyModal = ({ children, title, open, onCancel, width }) => {
   const handleCancel = () => {
-    setVisible(false);
+    onCancel();
   };
 
   return (
-    <>
-      <Button ghost={ghost} type={type} icon={icon} onClick={() => showModal()}>
-        {title}
-      </Button>
-      <Modal
-        type={type}
-        title={title}
-        open={visible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        width={width}
-      >
-        {children}
-      </Modal>
-    </>
+    <Modal
+      title={title}
+      open={open}
+      onCancel={handleCancel}
+      width={width}
+      footer={null}
+    >
+      {children}
+    </Modal>
   );
 };
-
 export default MyModal;

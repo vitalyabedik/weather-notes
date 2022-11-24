@@ -17,7 +17,6 @@ const Header = ({ changeForecastOption }) => {
 
   const [form] = Form.useForm();
 
-  const [visible, setVisible] = useState(false);
   const [city, setCity] = useState("");
 
   const { getWeatherForecastByCityName } = useActions();
@@ -69,7 +68,7 @@ const Header = ({ changeForecastOption }) => {
           md={16}
         >
           <Space size={8}>
-            <Calendar visible={visible} setVisible={setVisible} />
+            <Calendar />
             <MySwitch
               checked="Daily"
               unChecked="Hourly"

@@ -29,12 +29,7 @@ const MyCalendar = () => {
   };
 
   return (
-    <Calendar
-      value={value}
-      onSelect={onSelect}
-      onPanelChange={onPanelChange}
-      footer={null}
-    />
+    <Calendar value={value} onSelect={onSelect} onPanelChange={onPanelChange} />
   );
 };
 

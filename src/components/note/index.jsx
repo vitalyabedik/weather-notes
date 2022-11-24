@@ -1,29 +1,32 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { Divider } from "antd";
-import { FileDoneOutlined } from "@ant-design/icons";
+import { Row, Col, Button, Divider } from "antd";
 
 import { MyModal } from "../UI";
 import NoteForm from "./NoteForm";
 import NoteList from "./NoteList";
+import useActions from "../../hooks/useActions";
 
 const Note = () => {
+  const { isOpenNote } = useSelector((state) => state.app);
   const notes = useSelector((store) => store.notes);
 
-  const [isVisible, setIsVisible] = useState(false);
+  const { closeNote } = useActions();
 
   return (
-    <MyModal
-      title="Note"
-      visible={isVisible}
-      setVisible={setIsVisible}
-      icon={<FileDoneOutlined />}
-    >
+    <MyModal title="Event Form" open={isOpenNote} onCancel={closeNote}>
       <Divider plain>Note item</Divider>
       <NoteForm />
       <Divider plain>Notes list</Divider>
       <NoteList notes={notes} />
+      <Row align="center">
+        <Col>
+          {" "}
+          <Button type="primary" onClick={() => closeNote()}>
+            Accept
+          </Button>
+        </Col>
+      </Row>
     </MyModal>
   );
 };

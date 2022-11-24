@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Space, Form, Input, TimePicker, Button } from "antd";
+import { Space, Form, Input, DatePicker, TimePicker, Button } from "antd";
 import { PlusCircleOutlined, ReloadOutlined } from "@ant-design/icons";
 
 import {
@@ -27,16 +27,13 @@ const NoteForm = () => {
     dispatch(setText(e.target.value));
   };
 
-  const handleAddNote = (event) => {
-    event.preventDefault();
-
+  const onFinish = () => {
     addNote({
       id: Date.now(),
       time: selectedTime,
       text,
       editing: false,
     });
-    form.resetFields();
   };
 
   const onReset = () => {
@@ -44,16 +41,7 @@ const NoteForm = () => {
   };
 
   return (
-    <Form
-      form={form}
-      autoComplete="off"
-      onFinish={(values) => {
-        console.log({ values });
-      }}
-      onFinishFailed={(error) => {
-        console.log({ error });
-      }}
-    >
+    <Form form={form} autoComplete="off" onFinish={onFinish}>
       <Form.Item
         name="text"
         label="Text"
@@ -74,8 +62,21 @@ const NoteForm = () => {
           allowClear
         />
       </Form.Item>
+      {/* <Form.Item
+        name="date-picker"
+        label="Date"
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: "Please select note date!",
+          },
+        ]}
+      >
+        <DatePicker />
+      </Form.Item> */}
       <Form.Item
-        name="time-picker"
+        name="time"
         label="Time"
         hasFeedback
         rules={[
@@ -97,17 +98,15 @@ const NoteForm = () => {
       <Form.Item>
         <Space size={8}>
           <Button
-            onClick={handleAddNote}
             type="primary"
             htmlType="submit"
             icon={<PlusCircleOutlined />}
           >
             Add note
           </Button>
-
-          {/* <Button htmlType="button" onClick={onReset} icon={<ReloadOutlined />}>
+          <Button htmlType="button" onClick={onReset} icon={<ReloadOutlined />}>
             Reset
-          </Button> */}
+          </Button>
         </Space>
       </Form.Item>
     </Form>
