@@ -3,6 +3,7 @@ import {
   APP_CALENDAR_CLOSE,
   APP_NOTE_OPEN,
   APP_NOTE_CLOSE,
+  APP_CHANGE_OPTION_FORECAST,
 } from "./actionTypes";
 
 export const openCalendar = () => ({
@@ -19,4 +20,9 @@ export const openNote = () => ({
 
 export const closeNote = () => ({
   type: APP_NOTE_CLOSE,
+});
+
+export const changeOptionForecast = (forecastOption) => ({
+  type: APP_CHANGE_OPTION_FORECAST,
+  payload: forecastOption,
 });

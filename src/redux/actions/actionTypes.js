@@ -3,6 +3,7 @@ export const APP_CALENDAR_OPEN = "APP_CALENDAR_OPEN";
 export const APP_CALENDAR_CLOSE = "APP_CALENDAR_CLOSE";
 export const APP_NOTE_OPEN = "APP_NOTE_OPEN";
 export const APP_NOTE_CLOSE = "APP_NOTE_CLOSE";
+export const APP_CHANGE_OPTION_FORECAST = "APP_CHANGE_OPTION_FORECAST";
 
 // text
 export const SET_TEXT = "SET_TEXT";

@@ -5,7 +5,7 @@ import { Row, Col, Button } from "antd";
 import styles from "./Calendar.module.scss";
 
 import { MyModal, MyCalendar } from "../UI";
-import Note from "../note";
+import Note from "../Note";
 import useActions from "../../hooks/useActions";
 
 const Calendar = () => {

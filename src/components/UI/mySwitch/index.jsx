@@ -8,7 +8,7 @@ const MySwitch = ({ checked, unChecked, onChange }) => (
     checkedChildren={checked}
     unCheckedChildren={unChecked}
     defaultChecked
-    onChange={() => onChange()}
+    onChange={onChange}
   />
 );
 export default MySwitch;

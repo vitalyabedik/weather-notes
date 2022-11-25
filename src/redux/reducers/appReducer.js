@@ -3,11 +3,13 @@ import {
   APP_CALENDAR_CLOSE,
   APP_NOTE_OPEN,
   APP_NOTE_CLOSE,
+  APP_CHANGE_OPTION_FORECAST,
 } from "../actions/actionTypes";
 
 const initialValue = {
   isOpenCalendar: false,
   isOpenNote: false,
+  isDailyForecast: true,
 };
 
 const appReducer = (state = initialValue, action) => {
@@ -34,6 +36,12 @@ const appReducer = (state = initialValue, action) => {
       return {
         ...state,
         isOpenNote: false,
+      };
+    }
+    case APP_CHANGE_OPTION_FORECAST: {
+      return {
+        ...state,
+        isDailyForecast: action.payload,
       };
     }
     default: {

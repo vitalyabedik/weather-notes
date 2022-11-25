@@ -4,10 +4,10 @@ import { useSelector } from "react-redux";
 import { Col, Row } from "antd";
 import styles from "./AppLayout.module.scss";
 
-import Header from "../header";
-import CurrentInfo from "../currentInfo";
-import Weather from "../weather";
-import CurrentEvent from "../currentEvent";
+import Header from "../Header";
+import CurrentInfo from "../CurrentInfo";
+import Weather from "../Weather";
+import CurrentEvent from "../CurrentEvent";
 import { MyAlert, MyLoader } from "../UI";
 import getWeatherBackground from "../../utils/getWeatherBackground";
 import useActions from "../../hooks/useActions";
@@ -15,10 +15,10 @@ import useActions from "../../hooks/useActions";
 const AppLayout = () => {
   const [currentCoordinates, setCurrentCoordinates] = useState("");
   const [statusCoordinates, setStatusCoordinates] = useState(null);
-  const [isDailyForecast, setIsDailyForecast] = useState(true);
 
   const { data, loading, error } = useSelector((state) => state.weather);
   const locationError = useSelector((state) => state.location.error);
+  const notes = useSelector((state) => state.notes);
 
   const { getLocationInfoByCoordinates, getWeatherForecastByCoordinates } =
     useActions();
@@ -26,10 +26,6 @@ const AppLayout = () => {
   const { lat, lon } = currentCoordinates;
   const currentWeatherBackground = data?.current?.weather?.[0]?.main;
   const layoutBackground = getWeatherBackground(currentWeatherBackground);
-
-  const changeForecastOption = () => {
-    setIsDailyForecast(!isDailyForecast);
-  };
 
   const getLocationCoordinates = () => {
     if (!navigator.geolocation) {
@@ -93,12 +89,12 @@ const AppLayout = () => {
               <div>
                 {" "}
                 <header>
-                  <Header changeForecastOption={changeForecastOption} />
+                  <Header />
                 </header>{" "}
                 <main>
                   <CurrentInfo />
-                  <CurrentEvent />
-                  <Weather isDailyForecast={isDailyForecast} />
+                  {notes.length !== 0 && <CurrentEvent />}
+                  <Weather />
                 </main>
               </div>
             </div>

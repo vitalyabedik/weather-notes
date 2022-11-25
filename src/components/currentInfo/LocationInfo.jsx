@@ -13,8 +13,11 @@ const LocationInfo = () => {
 
   const currentLocation = useSelector((state) => state.location.data);
 
-  const countryCode = currentLocation?.[0]?.country;
+  const countryCode = !currentLocation?.[0]?.country
+    ? ""
+    : currentLocation?.[0]?.country;
   const cityName = currentLocation?.[0]?.name;
+
   const countryName = formatCountryName(countryCode);
 
   return (

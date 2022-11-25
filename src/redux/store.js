@@ -11,6 +11,7 @@ import geocodingAPI from "../api/geocodingAPI";
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["app"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
