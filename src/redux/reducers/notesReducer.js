@@ -12,8 +12,13 @@ const initialValue = [
 const notesReducer = (state = initialValue, action) => {
   switch (action.type) {
     case ADD_NOTE: {
-      return [...state, action.payload];
+      return [...state, action.payload].sort((a, b) => {
+        if (a.time > b.time) return 1;
+        if (a.time < b.time) return -1;
+        return 0;
+      });
     }
+
     case DELETE_NOTE: {
       return state.filter((note) => note.id !== action.payload);
     }

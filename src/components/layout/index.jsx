@@ -17,6 +17,7 @@ const AppLayout = () => {
   const [statusCoordinates, setStatusCoordinates] = useState(null);
 
   const { data, loading, error } = useSelector((state) => state.weather);
+  const location = useSelector((state) => state.location.data);
   const locationError = useSelector((state) => state.location.error);
   const notes = useSelector((state) => state.notes);
 
@@ -48,7 +49,9 @@ const AppLayout = () => {
   };
 
   useEffect(() => {
-    getLocationCoordinates();
+    if (!location) {
+      getLocationCoordinates();
+    }
   }, []);
 
   useEffect(() => {
@@ -59,7 +62,7 @@ const AppLayout = () => {
   }, [currentCoordinates]);
 
   return (
-    <div>
+    <>
       {statusCoordinates && (
         <Col align="middle" justify="center">
           <MyAlert description={statusCoordinates} />
@@ -101,7 +104,7 @@ const AppLayout = () => {
           </div>
         )
       )}
-    </div>
+    </>
   );
 };
 

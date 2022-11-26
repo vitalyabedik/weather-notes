@@ -34,6 +34,7 @@ const NoteForm = () => {
       text,
       editing: false,
     });
+    form.resetFields();
   };
 
   const onReset = () => {
