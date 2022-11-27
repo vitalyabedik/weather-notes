@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import { Space, Form, Input, DatePicker, TimePicker, Button } from "antd";
 import { PlusCircleOutlined, ReloadOutlined } from "@ant-design/icons";
@@ -9,22 +9,18 @@ import {
   setCurrentTime,
   getCurrentTime,
 } from "../../utils/formatData/formatTimeAndDate";
-import setText from "../../redux/actions/textAction";
 import useActions from "../../hooks/useActions";
 
 const NoteForm = () => {
   const [selectedTime, setSelectedTime] = useState(null);
 
-  const text = useSelector((store) => store.text);
-
-  //! why useAction not working for setText !!!
-  const dispatch = useDispatch();
-  const { addNote } = useActions();
+  const text = useSelector((store) => store.app.text);
+  const { setText, addNote } = useActions();
 
   const [form] = Form.useForm();
 
   const handleText = (e) => {
-    dispatch(setText(e.target.value));
+    setText(e.target.value);
   };
 
   const onFinish = () => {

@@ -11,21 +11,32 @@ import CurrentEvent from "../CurrentEvent";
 import { MyAlert, MyLoader } from "../UI";
 import getWeatherBackground from "../../utils/getWeatherBackground";
 import useActions from "../../hooks/useActions";
+import {
+  selectAllWeatherDataOpenWeather,
+  selectAllWeatherDataStormGlass,
+  selectWeatherInfo,
+} from "../../redux/selectors/weatherSelectors";
 
 const AppLayout = () => {
   const [currentCoordinates, setCurrentCoordinates] = useState("");
   const [statusCoordinates, setStatusCoordinates] = useState(null);
 
-  const { data, loading, error } = useSelector((state) => state.weather);
+  const { isBasicAPI } = useSelector((state) => state.app);
+  const { currentOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
+  const stormGlassWeather = useSelector(selectAllWeatherDataStormGlass);
+  const { loadingWeather, errorWeather } = useSelector(selectWeatherInfo);
   const location = useSelector((state) => state.location.data);
   const locationError = useSelector((state) => state.location.error);
   const notes = useSelector((state) => state.notes);
 
-  const { getLocationInfoByCoordinates, getWeatherForecastByCoordinates } =
-    useActions();
+  const {
+    getLocationInfoByCoordinates,
+    getWeatherForecastByCoordinates,
+    getWeatherStormGlass,
+  } = useActions();
 
   const { lat, lon } = currentCoordinates;
-  const currentWeatherBackground = data?.current?.weather?.[0]?.main;
+  const currentWeatherBackground = currentOpenWeather?.weather?.[0]?.main;
   const layoutBackground = getWeatherBackground(currentWeatherBackground);
 
   const getLocationCoordinates = () => {
@@ -61,6 +72,14 @@ const AppLayout = () => {
     }
   }, [currentCoordinates]);
 
+  useEffect(() => {
+    if (location && !isBasicAPI) {
+      getWeatherStormGlass(lat, lon);
+      // console.log(`данные: ${stormGlassWeather}`);
+      console.log(`данные поменялись`);
+    }
+  }, [isBasicAPI]);
+
   return (
     <>
       {statusCoordinates && (
@@ -68,9 +87,9 @@ const AppLayout = () => {
           <MyAlert description={statusCoordinates} />
         </Col>
       )}
-      {error && (
+      {errorWeather && (
         <Col align="middle" justify="center">
-          <MyAlert description={error} />
+          <MyAlert description={errorWeather} />
         </Col>
       )}
       {locationError && (
@@ -78,12 +97,12 @@ const AppLayout = () => {
           <MyAlert description={locationError} />
         </Col>
       )}
-      {loading ? (
+      {loadingWeather ? (
         <Row className={styles.loader} align="middle" justify="center">
           <MyLoader />
         </Row>
       ) : (
-        data && (
+        currentOpenWeather && (
           <div
             className={styles.wrapper}
             style={{ backgroundImage: `url(${layoutBackground})` }}

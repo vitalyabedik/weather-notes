@@ -3,7 +3,8 @@ import { SET_WEATHER_ERROR } from "../actions/actionTypes";
 import { setLocation, setLocationError } from "../actions/locationAction";
 
 import {
-  setWeather,
+  setWeatherOpenWeather,
+  setWeatherStormGlass,
   setWeatherLoading,
   setWeatherError,
 } from "../actions/weatherAction";
@@ -36,7 +37,7 @@ export const getWeatherForecastByCoordinates =
     try {
       dispatch(setWeatherLoading());
       const response = await openWeatherAPI.getWeatherForecast(lat, lon);
-      dispatch(setWeather(response.data));
+      dispatch(setWeatherOpenWeather(response.data));
     } catch (error) {
       dispatch(setWeatherError(error.message));
     }
@@ -55,5 +56,19 @@ export const getWeatherForecastByCityName =
         type: SET_WEATHER_ERROR,
         payload: "Please, enter correct city name!",
       });
+    }
+  };
+
+// !!!
+export const getWeatherStormGlass =
+  (lat, lon) =>
+  async (dispatch, _, { stormGlassAPI }) => {
+    try {
+      // dispatch(setWeatherLoading());
+      const response = await stormGlassAPI.getWeatherForecast(lat, lon);
+      dispatch(setWeatherStormGlass(response.data));
+      console.log(response.data);
+    } catch (error) {
+      dispatch(setWeatherError(error.message));
     }
   };

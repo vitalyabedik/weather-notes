@@ -3,22 +3,18 @@ import { useSelector } from "react-redux";
 import { Col, Row } from "antd";
 
 import ItemForecast from "./ItemForecast";
-import { getOtherWeekDays } from "../../utils/formatData/formatWeather";
 import {
   convertTimestamp,
   setFormat,
   formatWeekday,
 } from "../../utils/formatData/formatTimeAndDate";
 import getWeatherIcon from "../../utils/getWeatherIcon";
+import { selectAllWeatherDataOpenWeather } from "../../redux/selectors/weatherSelectors";
 
 const DailyForecast = () => {
-  const weather = useSelector((state) => state.weather.data);
+  const { dailyOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
 
-  // const dailyDataWeather = getOtherWeekDays(weather?.daily);
-  const dailyDataWeather = weather?.daily?.slice(1, 7);
-  // const dailyDataWeather = weather?.daily;
-
-  const days = dailyDataWeather?.map((item) => ({
+  const days = dailyOpenWeather?.slice(1, 7)?.map((item) => ({
     id: item.dt,
     name: setFormat(convertTimestamp(item.dt), formatWeekday),
     icon: getWeatherIcon(item?.weather?.[0]?.icon),

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Grid, Space, Col, Row, Form, Input, Button } from "antd";
@@ -18,10 +18,14 @@ const Header = () => {
 
   const [form] = Form.useForm();
 
-  const { isDailyForecast } = useSelector((store) => store.app);
+  const { isDailyForecast, isBasicAPI } = useSelector((store) => store.app);
   const [city, setCity] = useState("");
 
-  const { getWeatherForecastByCityName, changeOptionForecast } = useActions();
+  const {
+    getWeatherForecastByCityName,
+    changeOptionForecast,
+    changeOptionAPI,
+  } = useActions();
 
   const changeHandler = (e) => {
     setCity(e.target.value);
@@ -32,8 +36,12 @@ const Header = () => {
     setCity("");
   };
 
-  const handleForecast = () => {
+  const handleChangeForecast = () => {
     changeOptionForecast(!isDailyForecast);
+  };
+
+  const handleChangeAPI = () => {
+    changeOptionAPI(!isBasicAPI);
   };
 
   return (
@@ -71,9 +79,13 @@ const Header = () => {
             <MySwitch
               checked="Daily"
               unChecked="Hourly"
-              onChange={handleForecast}
+              onChange={handleChangeForecast}
             />
-            <MySwitch checked="FirstAPI" unChecked="SecondAPI" />
+            <MySwitch
+              checked="FirstAPI"
+              unChecked="SecondAPI"
+              onChange={handleChangeAPI}
+            />
           </Space>
         </Col>
       </Row>

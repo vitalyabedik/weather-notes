@@ -1,15 +1,10 @@
 import { useSelector } from "react-redux";
 
 import { Grid, Row, Col, Typography, Tag, Image } from "antd";
-
-import {
-  getOtherWeekDays,
-  getToday,
-} from "../../utils/formatData/formatWeather";
+import styles from "./TodayForecast.module.scss";
 
 import getWeatherIcon from "../../utils/getWeatherIcon";
-
-import styles from "./TodayForecast.module.scss";
+import { selectAllWeatherDataOpenWeather } from "../../redux/selectors/weatherSelectors";
 
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -18,16 +13,12 @@ const TodayForecast = () => {
   const screens = useBreakpoint();
   const isMobile = screens.xs;
 
-  const weather = useSelector((state) => state.weather.data);
-  const location = useSelector((state) => state.location.data);
-
-  // const todayDataWeather = weather?.current;
-  // const todayDataWeather = getToday(weather[0]);
+  const { currentOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
 
   const todayWeather = {
-    id: weather?.current?.dt,
-    icon: getWeatherIcon(weather?.current?.weather?.[0]?.icon),
-    temperature: weather?.current?.temp?.toFixed(),
+    id: currentOpenWeather?.dt,
+    icon: getWeatherIcon(currentOpenWeather?.weather?.[0]?.icon),
+    temperature: currentOpenWeather?.temp?.toFixed(),
   };
 
   return (

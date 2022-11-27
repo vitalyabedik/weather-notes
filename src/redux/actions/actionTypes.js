@@ -1,24 +1,24 @@
 // app
+export const APP_SET_TEXT = "APP_SET_TEXT";
 export const APP_CALENDAR_OPEN = "APP_CALENDAR_OPEN";
 export const APP_CALENDAR_CLOSE = "APP_CALENDAR_CLOSE";
 export const APP_NOTE_OPEN = "APP_NOTE_OPEN";
 export const APP_NOTE_CLOSE = "APP_NOTE_CLOSE";
 export const APP_CHANGE_OPTION_FORECAST = "APP_CHANGE_OPTION_FORECAST";
+export const APP_CHANGE_OPTION_API = "APP_CHANGE_OPTION_API";
 
-// text
-export const SET_TEXT = "SET_TEXT";
-
-// notes
-export const ADD_NOTE = "ADD_NOTE";
-export const DELETE_NOTE = "DELETE_NOTE";
-export const UPDATE_NOTE = "UPDATE_NOTE";
+// weather
+export const SET_WEATHER_DATA_OPENWEATHER = "SET_WEATHER_DATA_OPENWEATHER";
+export const SET_WEATHER_DATA_STORMGLASS = "SET_WEATHER_DATA_STORMGLASS";
+export const SET_WEATHER_ERROR = "SET_WEATHER_ERROR";
+export const SET_WEATHER_LOADING = "SET_WEATHER_LOADING";
 
 // location
 export const SET_LOCATION = "SET_LOCATION";
 export const SET_LOCATION_ERROR = "SET_LOCATION_ERROR";
 export const SET_LOCATION_LOADING = "SET_LOCATION_LOADING";
 
-// weather
-export const SET_WEATHER = "SET_WEATHER";
-export const SET_WEATHER_ERROR = "SET_WEATHER_ERROR";
-export const SET_WEATHER_LOADING = "SET_WEATHER_LOADING";
+// notes
+export const ADD_NOTE = "ADD_NOTE";
+export const DELETE_NOTE = "DELETE_NOTE";
+export const UPDATE_NOTE = "UPDATE_NOTE";

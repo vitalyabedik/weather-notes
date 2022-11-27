@@ -1,21 +1,31 @@
 import {
-  SET_WEATHER,
+  SET_WEATHER_DATA_OPENWEATHER,
+  SET_WEATHER_DATA_STORMGLASS,
   SET_WEATHER_ERROR,
   SET_WEATHER_LOADING,
 } from "../actions/actionTypes";
 
 const initialValue = {
-  data: null,
+  openWeatherData: null,
+  stormGlassData: null,
   loading: false,
   error: "",
 };
 
 const weatherReducer = (state = initialValue, action) => {
   switch (action.type) {
-    case SET_WEATHER: {
+    case SET_WEATHER_DATA_OPENWEATHER: {
       return {
         ...state,
-        data: action.payload,
+        openWeatherData: action.payload,
+        loading: false,
+        error: "",
+      };
+    }
+    case SET_WEATHER_DATA_STORMGLASS: {
+      return {
+        ...state,
+        stormGlassData: action.payload,
         loading: false,
         error: "",
       };

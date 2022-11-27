@@ -6,6 +6,7 @@ import storage from "redux-persist/lib/storage";
 
 import rootReducer from "./reducers";
 import openWeatherAPI from "../api/openWeatherAPI";
+import stormGlassAPI from "../api/stormGlassAPI";
 import geocodingAPI from "../api/geocodingAPI";
 
 const persistConfig = {
@@ -22,6 +23,7 @@ const store = createStore(
     applyMiddleware(
       thunk.withExtraArgument({
         openWeatherAPI,
+        stormGlassAPI,
         geocodingAPI,
       })
     )

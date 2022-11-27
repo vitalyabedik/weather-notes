@@ -14,15 +14,17 @@ import {
   formatWeekday,
 } from "../../utils/formatData/formatTimeAndDate";
 import getWeatherIcon from "../../utils/getWeatherIcon";
+import { selectAllWeatherDataOpenWeather } from "../../redux/selectors/weatherSelectors";
 
 const HourlyForecast = () => {
   const [firstElement, setFirstElement] = useState(0);
   const [lastElement, setLastElement] = useState(6);
-  const weather = useSelector((state) => state.weather.data);
+
+  const { hourlyOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
 
   const todayName = setFormat(nowDay, formatWeekday);
 
-  const currentDayHours = weather?.hourly?.filter(
+  const currentDayHours = hourlyOpenWeather?.filter(
     (item) => setFormat(convertTimestamp(item?.dt), formatWeekday) === todayName
   );
 
