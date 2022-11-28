@@ -34,8 +34,8 @@ export const getLocationCoordinatesByCityName =
 export const getWeatherForecastByCoordinates =
   (lat, lon) =>
   async (dispatch, _, { openWeatherAPI }) => {
+    dispatch(setWeatherLoading());
     try {
-      dispatch(setWeatherLoading());
       const response = await openWeatherAPI.getWeatherForecast(lat, lon);
       dispatch(setWeatherOpenWeather(response.data));
     } catch (error) {
@@ -63,8 +63,8 @@ export const getWeatherForecastByCityName =
 export const getWeatherStormGlass =
   (lat, lon) =>
   async (dispatch, _, { stormGlassAPI }) => {
+    dispatch(setWeatherLoading());
     try {
-      // dispatch(setWeatherLoading());
       const response = await stormGlassAPI.getWeatherForecast(lat, lon);
       dispatch(setWeatherStormGlass(response.data));
       console.log(response.data);

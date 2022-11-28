@@ -1,8 +1,8 @@
 import {
   SET_WEATHER_DATA_OPENWEATHER,
   SET_WEATHER_DATA_STORMGLASS,
-  SET_WEATHER_ERROR,
   SET_WEATHER_LOADING,
+  SET_WEATHER_ERROR,
 } from "../actions/actionTypes";
 
 const initialValue = {

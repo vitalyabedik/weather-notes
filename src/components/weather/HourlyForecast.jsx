@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -14,13 +15,17 @@ import {
   formatWeekday,
 } from "../../utils/formatData/formatTimeAndDate";
 import getWeatherIcon from "../../utils/getWeatherIcon";
-import { selectAllWeatherDataOpenWeather } from "../../redux/selectors/weatherSelectors";
+import {
+  selectAllWeatherDataOpenWeather,
+  selectAllWeatherDataStormGlass,
+} from "../../redux/selectors/weatherSelectors";
 
 const HourlyForecast = () => {
   const [firstElement, setFirstElement] = useState(0);
   const [lastElement, setLastElement] = useState(6);
 
   const { hourlyOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
+  const { hourlyStormGlass } = useSelector(selectAllWeatherDataStormGlass);
 
   const todayName = setFormat(nowDay, formatWeekday);
 
@@ -28,10 +33,35 @@ const HourlyForecast = () => {
     (item) => setFormat(convertTimestamp(item?.dt), formatWeekday) === todayName
   );
 
+  // const currentDayHoursStormGlass = stormGlassWeather?.map((item) => item.time);
+  const currentDayHoursStormGlass = hourlyStormGlass?.filter(
+    (item) =>
+      moment(item.time).utc().format("D MMMM") === nowDay.format("D MMMM")
+  );
+
+  const dataStormGlass = currentDayHoursStormGlass.map((item) => ({
+    id: moment(item.time).unix(),
+    time: moment(item.time).utc().format("HH:mm"),
+    temperature: item.airTemperature.sg.toFixed().replace("-0", "0"),
+  }));
+
+  console.log(dataStormGlass);
+  // ???
+  // const currentDayHoursStormGlass = hourlyStormGlass?.map((item) =>
+  //   moment(item.time).format("HH:mm, D MMMM")
+  // );
+  // console.log(currentDayHoursStormGlass);
+  // ???
+  // console.log(hourlyStormGlass.slice(0, 24));
+  // console.log(hourlyStormGlass.slice(0, 24));
+
+  // console.log(hourlyStormGlass.map((item) => item.time));
+  // console.log(moment(hourlyStormGlass[0].time).format("ddd"));
+  // 2022-11-27T00:00:00+00:00
+
   // const currentDayHours = weather?.hourly?.map((item) =>
   //   getCurrentDayName(getCurrentDay(item?.dt))
   // );
-
   // const currentDayHours = weather?.hourly?.filter(
   //   (item) => getCurrentDayName(getCurrentDay(item?.dt)) === "Mon"
   // );

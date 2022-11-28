@@ -21,13 +21,14 @@ const AppLayout = () => {
   const [currentCoordinates, setCurrentCoordinates] = useState("");
   const [statusCoordinates, setStatusCoordinates] = useState(null);
 
-  const { isBasicAPI } = useSelector((state) => state.app);
   const { currentOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
   const stormGlassWeather = useSelector(selectAllWeatherDataStormGlass);
-  const { loadingWeather, errorWeather } = useSelector(selectWeatherInfo);
   const location = useSelector((state) => state.location.data);
-  const locationError = useSelector((state) => state.location.error);
   const notes = useSelector((state) => state.notes);
+
+  const { isBasicAPI } = useSelector((state) => state.app);
+  const { loadingWeather, errorWeather } = useSelector(selectWeatherInfo);
+  const locationError = useSelector((state) => state.location.error);
 
   const {
     getLocationInfoByCoordinates,
@@ -75,8 +76,6 @@ const AppLayout = () => {
   useEffect(() => {
     if (location && !isBasicAPI) {
       getWeatherStormGlass(lat, lon);
-      // console.log(`данные: ${stormGlassWeather}`);
-      console.log(`данные поменялись`);
     }
   }, [isBasicAPI]);
 

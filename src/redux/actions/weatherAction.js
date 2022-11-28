@@ -15,11 +15,11 @@ export const setWeatherStormGlass = (stormGlassData) => ({
   payload: stormGlassData,
 });
 
+export const setWeatherLoading = () => ({
+  type: SET_WEATHER_LOADING,
+});
+
 export const setWeatherError = (error) => ({
   type: SET_WEATHER_ERROR,
   payload: error,
-});
-
-export const setWeatherLoading = () => ({
-  type: SET_WEATHER_LOADING,
 });
