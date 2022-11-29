@@ -12,8 +12,7 @@ import { MyAlert, MyLoader } from "../UI";
 import getWeatherBackground from "../../utils/getWeatherBackground";
 import useActions from "../../hooks/useActions";
 import {
-  selectAllWeatherDataOpenWeather,
-  selectAllWeatherDataStormGlass,
+  selectAllWeatherData,
   selectWeatherInfo,
 } from "../../redux/selectors/weatherSelectors";
 
@@ -21,8 +20,8 @@ const AppLayout = () => {
   const [currentCoordinates, setCurrentCoordinates] = useState("");
   const [statusCoordinates, setStatusCoordinates] = useState(null);
 
-  const { currentOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
-  const stormGlassWeather = useSelector(selectAllWeatherDataStormGlass);
+  const { currentOpenWeather, hourlyStormGlass } =
+    useSelector(selectAllWeatherData);
   const location = useSelector((state) => state.location.data);
   const notes = useSelector((state) => state.notes);
 
@@ -74,7 +73,7 @@ const AppLayout = () => {
   }, [currentCoordinates]);
 
   useEffect(() => {
-    if (location && !isBasicAPI) {
+    if (!hourlyStormGlass && !isBasicAPI) {
       getWeatherStormGlass(lat, lon);
     }
   }, [isBasicAPI]);

@@ -9,10 +9,10 @@ import {
   formatWeekday,
 } from "../../utils/formatData/formatTimeAndDate";
 import getWeatherIcon from "../../utils/getWeatherIcon";
-import { selectAllWeatherDataOpenWeather } from "../../redux/selectors/weatherSelectors";
+import { selectAllWeatherData } from "../../redux/selectors/weatherSelectors";
 
 const DailyForecast = () => {
-  const { dailyOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
+  const { dailyOpenWeather } = useSelector(selectAllWeatherData);
 
   const days = dailyOpenWeather?.slice(1, 7)?.map((item) => ({
     id: item.dt,

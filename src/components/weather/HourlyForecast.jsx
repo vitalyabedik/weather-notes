@@ -15,49 +15,33 @@ import {
   formatWeekday,
 } from "../../utils/formatData/formatTimeAndDate";
 import getWeatherIcon from "../../utils/getWeatherIcon";
-import {
-  selectAllWeatherDataOpenWeather,
-  selectAllWeatherDataStormGlass,
-} from "../../redux/selectors/weatherSelectors";
+import { selectAllWeatherData } from "../../redux/selectors/weatherSelectors";
 
 const HourlyForecast = () => {
   const [firstElement, setFirstElement] = useState(0);
   const [lastElement, setLastElement] = useState(6);
 
-  const { hourlyOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
-  const { hourlyStormGlass } = useSelector(selectAllWeatherDataStormGlass);
+  const { isBasicAPI } = useSelector((store) => store.app);
+  const { hourlyOpenWeather, hourlyStormGlass } =
+    useSelector(selectAllWeatherData);
 
   const todayName = setFormat(nowDay, formatWeekday);
 
-  const currentDayHours = hourlyOpenWeather?.filter(
+  const currentDayHoursOpenWeather = hourlyOpenWeather?.filter(
     (item) => setFormat(convertTimestamp(item?.dt), formatWeekday) === todayName
   );
 
-  // const currentDayHoursStormGlass = stormGlassWeather?.map((item) => item.time);
   const currentDayHoursStormGlass = hourlyStormGlass?.filter(
     (item) =>
-      moment(item.time).utc().format("D MMMM") === nowDay.format("D MMMM")
+      moment(item.time).utc().format("D MMMM") === nowDay.format("D MMMM") &&
+      nowDay.format("HH") <= moment(item.time).utc().format("HH")
   );
 
-  const dataStormGlass = currentDayHoursStormGlass.map((item) => ({
+  const dataStormGlass = currentDayHoursStormGlass?.map((item) => ({
     id: moment(item.time).unix(),
     time: moment(item.time).utc().format("HH:mm"),
     temperature: item.airTemperature.sg.toFixed().replace("-0", "0"),
   }));
-
-  console.log(dataStormGlass);
-  // ???
-  // const currentDayHoursStormGlass = hourlyStormGlass?.map((item) =>
-  //   moment(item.time).format("HH:mm, D MMMM")
-  // );
-  // console.log(currentDayHoursStormGlass);
-  // ???
-  // console.log(hourlyStormGlass.slice(0, 24));
-  // console.log(hourlyStormGlass.slice(0, 24));
-
-  // console.log(hourlyStormGlass.map((item) => item.time));
-  // console.log(moment(hourlyStormGlass[0].time).format("ddd"));
-  // 2022-11-27T00:00:00+00:00
 
   // const currentDayHours = weather?.hourly?.map((item) =>
   //   getCurrentDayName(getCurrentDay(item?.dt))
@@ -70,12 +54,18 @@ const HourlyForecast = () => {
   //   getCurrentDay(item?.dt).format("HH:mm, dddd, D MMMM")
   // );
 
-  const hours = currentDayHours?.map((item) => ({
+  const hours = currentDayHoursOpenWeather?.map((item) => ({
     id: item.dt,
     time: setFormat(convertTimestamp(item.dt), formatHourMinute),
     icon: getWeatherIcon(item?.weather?.[0]?.icon),
     temperature: item?.temp.toFixed(),
   }));
+
+  // !!!
+
+  console.log(dataStormGlass);
+
+  // !!!
 
   const sevenHours = hours.slice(firstElement, lastElement);
 

@@ -4,7 +4,7 @@ import { Grid, Row, Col, Typography, Tag, Image } from "antd";
 import styles from "./TodayForecast.module.scss";
 
 import getWeatherIcon from "../../utils/getWeatherIcon";
-import { selectAllWeatherDataOpenWeather } from "../../redux/selectors/weatherSelectors";
+import { selectAllWeatherData } from "../../redux/selectors/weatherSelectors";
 
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -13,7 +13,7 @@ const TodayForecast = () => {
   const screens = useBreakpoint();
   const isMobile = screens.xs;
 
-  const { currentOpenWeather } = useSelector(selectAllWeatherDataOpenWeather);
+  const { currentOpenWeather } = useSelector(selectAllWeatherData);
 
   const todayWeather = {
     id: currentOpenWeather?.dt,
