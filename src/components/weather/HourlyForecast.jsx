@@ -13,8 +13,14 @@ import {
   setFormat,
   formatHourMinute,
   formatWeekday,
+  formatDateMonth,
+  formatHour,
+  getCurrentTimeUTC,
+  convertToTimestamp,
 } from "../../utils/formatData/formatTimeAndDate";
 import getWeatherIcon from "../../utils/getWeatherIcon";
+import roundNumAndRemoveNegativeZero from "../../utils/roundNumAndRemoveNegativeZero";
+import changeTemperature from "../../utils/changeTemperature";
 import { selectAllWeatherData } from "../../redux/selectors/weatherSelectors";
 
 const HourlyForecast = () => {
@@ -33,14 +39,21 @@ const HourlyForecast = () => {
 
   const currentDayHoursStormGlass = hourlyStormGlass?.filter(
     (item) =>
-      moment(item.time).utc().format("D MMMM") === nowDay.format("D MMMM") &&
-      nowDay.format("HH") <= moment(item.time).utc().format("HH")
+      getCurrentTimeUTC(item.time, formatDateMonth) ===
+        setFormat(nowDay, formatDateMonth) &&
+      setFormat(nowDay, formatHour) <= getCurrentTimeUTC(item.time, formatHour)
   );
 
-  const dataStormGlass = currentDayHoursStormGlass?.map((item) => ({
-    id: moment(item.time).unix(),
-    time: moment(item.time).utc().format("HH:mm"),
-    temperature: item.airTemperature.sg.toFixed().replace("-0", "0"),
+  // const currentDayHoursStormGlass = hourlyStormGlass?.filter(
+  //   (item) =>
+  //     moment(item.time).utc().format("D MMMM") === nowDay.format("D MMMM") &&
+  //     nowDay.format("HH") <= moment(item.time).utc().format("HH")
+  // );
+
+  const hoursStormGlass = currentDayHoursStormGlass?.map((item) => ({
+    id: convertToTimestamp(item.time),
+    time: getCurrentTimeUTC(item.time, formatHourMinute),
+    temperature: roundNumAndRemoveNegativeZero(item.airTemperature.sg),
   }));
 
   // const currentDayHours = weather?.hourly?.map((item) =>
@@ -54,25 +67,31 @@ const HourlyForecast = () => {
   //   getCurrentDay(item?.dt).format("HH:mm, dddd, D MMMM")
   // );
 
-  const hours = currentDayHoursOpenWeather?.map((item) => ({
+  const hoursOpenWeather = currentDayHoursOpenWeather?.map((item) => ({
     id: item.dt,
     time: setFormat(convertTimestamp(item.dt), formatHourMinute),
     icon: getWeatherIcon(item?.weather?.[0]?.icon),
-    temperature: item?.temp.toFixed(),
+    temperature: roundNumAndRemoveNegativeZero(item?.temp),
   }));
 
-  // !!!
+  const changeWeather = () => {
+    [...hoursOpenWeather].forEach((item) => {
+      const newTemp = hoursStormGlass?.filter((el) => el.time === item.time)[0]
+        ?.temperature;
+      item.temperature = newTemp;
+    });
+    return hoursOpenWeather;
+  };
 
-  console.log(dataStormGlass);
-
-  // !!!
-
-  const sevenHours = hours.slice(firstElement, lastElement);
+  const hours = isBasicAPI
+    ? hoursOpenWeather
+    : changeTemperature(hoursOpenWeather, hoursStormGlass);
+  const currentHours = hours.slice(firstElement, lastElement);
 
   return (
     <>
       <Row className={styles.hourlyForecast} justify="space-around">
-        {sevenHours.map((item) => (
+        {currentHours.map((item) => (
           <Col xs={8} sm={8} md={4} key={item.id}>
             <ItemForecast
               info={item.time}
@@ -100,7 +119,7 @@ const HourlyForecast = () => {
           <RightOutlined className={styles[`hourlyForecast__button-icon`]} />
         }
         onClick={() => {
-          if (lastElement < hours.length) {
+          if (lastElement < hoursOpenWeather.length) {
             setFirstElement((prevFirstElement) => prevFirstElement + 1);
             setLastElement((prevLastElement) => prevLastElement + 1);
           }

@@ -5,6 +5,7 @@ import styles from "./TodayForecast.module.scss";
 
 import getWeatherIcon from "../../utils/getWeatherIcon";
 import { selectAllWeatherData } from "../../redux/selectors/weatherSelectors";
+import roundNumAndRemoveNegativeZero from "../../utils/roundNumAndRemoveNegativeZero";
 
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -18,7 +19,7 @@ const TodayForecast = () => {
   const todayWeather = {
     id: currentOpenWeather?.dt,
     icon: getWeatherIcon(currentOpenWeather?.weather?.[0]?.icon),
-    temperature: currentOpenWeather?.temp?.toFixed(),
+    temperature: roundNumAndRemoveNegativeZero(currentOpenWeather?.temp),
   };
 
   return (
