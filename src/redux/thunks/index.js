@@ -67,7 +67,6 @@ export const getWeatherStormGlass =
     try {
       const response = await stormGlassAPI.getWeatherForecast(lat, lon);
       dispatch(setWeatherStormGlass(response.data));
-      console.log(response.data);
     } catch (error) {
       dispatch(setWeatherError(error.message));
     }

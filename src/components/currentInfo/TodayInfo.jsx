@@ -1,3 +1,6 @@
+import moment from "moment";
+import { useState, useEffect } from "react";
+
 import { Grid, Row, Col, Typography } from "antd";
 
 import styles from "./TodayInfo.module.scss";
@@ -16,15 +19,29 @@ const TodayInfo = () => {
   const screens = useBreakpoint();
   const isMobile = screens.xs;
 
-  const currentTime = setFormat(nowDay, formatHourMinute);
+  const [time, setTime] = useState();
+
   const currentDate = setFormat(nowDay, formatWeekdayDateMonthYear);
+
+  useEffect(() => {
+    setInterval(() => {
+      // const currentTime = setFormat(nowDay, formatHourMinute);
+      // setTime(moment().format("HH:mm"));
+      // setTime(moment().format(formatHourMinute));
+      setTime(setFormat(moment(), formatHourMinute));
+    }, 1000);
+    console.log(time);
+  }, [time]);
+
+  // const currentTime = setFormat(time, formatHourMinute);
+  // const currentTime = time.format("HH:mm");
 
   return (
     <div className={styles.todayInfo}>
       <Row justify={isMobile && "center"} gutter={[8]} align="middle">
         <Col className={styles.locationInfo__time}>
           <Text className={styles[`ant-typography`]} strong>
-            {currentTime}
+            {time}
             <span className={styles[`locationInfo__time-pm`]}>
               <Text className={styles[`ant-typography`]}> PM</Text>
             </span>

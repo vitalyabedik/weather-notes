@@ -1,4 +1,3 @@
-import moment from "moment";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -44,28 +43,11 @@ const HourlyForecast = () => {
       setFormat(nowDay, formatHour) <= getCurrentTimeUTC(item.time, formatHour)
   );
 
-  // const currentDayHoursStormGlass = hourlyStormGlass?.filter(
-  //   (item) =>
-  //     moment(item.time).utc().format("D MMMM") === nowDay.format("D MMMM") &&
-  //     nowDay.format("HH") <= moment(item.time).utc().format("HH")
-  // );
-
   const hoursStormGlass = currentDayHoursStormGlass?.map((item) => ({
     id: convertToTimestamp(item.time),
     time: getCurrentTimeUTC(item.time, formatHourMinute),
     temperature: roundNumAndRemoveNegativeZero(item.airTemperature.sg),
   }));
-
-  // const currentDayHours = weather?.hourly?.map((item) =>
-  //   getCurrentDayName(getCurrentDay(item?.dt))
-  // );
-  // const currentDayHours = weather?.hourly?.filter(
-  //   (item) => getCurrentDayName(getCurrentDay(item?.dt)) === "Mon"
-  // );
-
-  // const currentHours = weather?.hourly?.map((item) =>
-  //   getCurrentDay(item?.dt).format("HH:mm, dddd, D MMMM")
-  // );
 
   const hoursOpenWeather = currentDayHoursOpenWeather?.map((item) => ({
     id: item.dt,
@@ -74,18 +56,10 @@ const HourlyForecast = () => {
     temperature: roundNumAndRemoveNegativeZero(item?.temp),
   }));
 
-  const changeWeather = () => {
-    [...hoursOpenWeather].forEach((item) => {
-      const newTemp = hoursStormGlass?.filter((el) => el.time === item.time)[0]
-        ?.temperature;
-      item.temperature = newTemp;
-    });
-    return hoursOpenWeather;
-  };
-
   const hours = isBasicAPI
     ? hoursOpenWeather
     : changeTemperature(hoursOpenWeather, hoursStormGlass);
+
   const currentHours = hours.slice(firstElement, lastElement);
 
   return (
