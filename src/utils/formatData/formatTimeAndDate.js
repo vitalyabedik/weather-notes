@@ -6,7 +6,7 @@ export const formatHourMinute = "HH:mm";
 export const formatWeekdayDateMonthYear = "dddd, D MMMM YYYY";
 export const formatDateMonth = "D MMMM";
 export const formatWeekday = "ddd";
-export const formatCalendarYearMonthDay = "YYYY-MM-DD";
+export const formatCalendarDayMonthYear = "DD.MM.YYYY";
 
 // dateAndTime
 export const nowDay = moment();
@@ -21,7 +21,7 @@ export const getCurrentTimeUTC = (value, format) =>
 
 // calendar
 export const setCalendarDate = () =>
-  setFormat(nowDay, formatCalendarYearMonthDay);
+  setFormat(nowDay, formatCalendarDayMonthYear);
 
 export const weekDaysNumberFormat = moment.updateLocale("en", {
   week: {
