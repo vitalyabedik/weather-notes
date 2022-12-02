@@ -7,6 +7,10 @@ import { SaveOutlined, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import styles from "./MyListItem.module.scss";
 
 import useActions from "../../../hooks/useActions";
+import {
+  formatHourMinute,
+  getCurrentTime,
+} from "../../../utils/formatData/formatTimeAndDate";
 
 const { Text } = Typography;
 
@@ -22,7 +26,7 @@ const ListItem = ({ item, showItemsActions }) => {
   };
 
   const handleTime = (value) => {
-    const timeString = moment(value).format("HH:mm");
+    const timeString = getCurrentTime(value);
     setTime(timeString);
   };
 
@@ -52,10 +56,12 @@ const ListItem = ({ item, showItemsActions }) => {
       <div className={styles.listItem}>
         {!isEditing ? (
           <div>
-            <Tag className={!showItemsActions && styles[`ant-tag`]}>
+            <Tag className={!showItemsActions ? styles[`ant-tag`] : null}>
               {item.time}
             </Tag>
-            <Text className={!showItemsActions && styles[`ant-typography`]}>
+            <Text
+              className={!showItemsActions ? styles[`ant-typography`] : null}
+            >
               {item.text}
             </Text>
           </div>
@@ -63,8 +69,8 @@ const ListItem = ({ item, showItemsActions }) => {
           <div className={styles.listItem__input}>
             <div className={styles[`listItem__input-time`]}>
               <TimePicker
-                format="HH:mm"
-                defaultValue={moment(time, "HH:mm")}
+                format={formatHourMinute}
+                defaultValue={moment(time, formatHourMinute)}
                 onSelect={handleTime}
                 autoFocus
               />
@@ -76,7 +82,11 @@ const ListItem = ({ item, showItemsActions }) => {
           </div>
         )}
       </div>
-      <div className={!showItemsActions && styles[`listItem__icon-visibility`]}>
+      <div
+        className={
+          !showItemsActions ? styles[`listItem__icon-visibility`] : null
+        }
+      >
         <div>
           {!isEditing ? (
             <div>

@@ -25,16 +25,9 @@ const TodayInfo = () => {
 
   useEffect(() => {
     setInterval(() => {
-      // const currentTime = setFormat(nowDay, formatHourMinute);
-      // setTime(moment().format("HH:mm"));
-      // setTime(moment().format(formatHourMinute));
       setTime(setFormat(moment(), formatHourMinute));
     }, 1000);
-    console.log(time);
-  }, [time]);
-
-  // const currentTime = setFormat(time, formatHourMinute);
-  // const currentTime = time.format("HH:mm");
+  });
 
   return (
     <div className={styles.todayInfo}>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Col, Row } from "antd";
+
 import styles from "./AppLayout.module.scss";
 
 import Header from "../Header";

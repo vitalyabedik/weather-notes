@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux";
+
 import { Grid, Row, Col, Typography } from "antd";
 
 import styles from "./LocationInfo.module.scss";
+
 import formatCountryName from "../../utils/formatData/formatCountryName";
 
 const { Text } = Typography;

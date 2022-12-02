@@ -8,10 +8,14 @@ import {
   formatHourMinute,
   setCurrentTime,
   getCurrentTime,
+  setFormat,
+  formatCalendarDayMonthYear,
 } from "../../utils/formatData/formatTimeAndDate";
+import rules from "../../utils/rules";
 import useActions from "../../hooks/useActions";
 
 const NoteForm = () => {
+  const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
 
   const text = useSelector((store) => store.app.text);
@@ -23,9 +27,16 @@ const NoteForm = () => {
     setText(e.target.value);
   };
 
-  const onFinish = () => {
+  const selectDate = (date) => {
+    if (date) {
+      setSelectedDate(setFormat(date, formatCalendarDayMonthYear));
+    }
+  };
+
+  const submitForm = () => {
     addNote({
       id: Date.now(),
+      date: selectedDate,
       time: selectedTime,
       text,
       editing: false,
@@ -38,18 +49,12 @@ const NoteForm = () => {
   };
 
   return (
-    <Form form={form} autoComplete="off" onFinish={onFinish}>
+    <Form form={form} autoComplete="off" onFinish={submitForm}>
       <Form.Item
         name="text"
         label="Text"
         hasFeedback
-        rules={[
-          {
-            required: true,
-            message: "Please enter your note!",
-          },
-          { whitespace: true },
-        ]}
+        rules={[rules.required("Text"), rules.whitespace]}
       >
         <Input
           value={text}
@@ -59,29 +64,22 @@ const NoteForm = () => {
           allowClear
         />
       </Form.Item>
-      {/* <Form.Item
+      <Form.Item
         name="date-picker"
         label="Date"
         hasFeedback
         rules={[
-          {
-            required: true,
-            message: "Please select note date!",
-          },
+          rules.required("Date"),
+          // rules.isDateAfter(" You cannot create an event in the past"),
         ]}
       >
-        <DatePicker />
-      </Form.Item> */}
+        <DatePicker onChange={(date) => selectDate(date)} />
+      </Form.Item>
       <Form.Item
-        name="time"
+        name="time-picker"
         label="Time"
         hasFeedback
-        rules={[
-          {
-            required: true,
-            message: "Please select note time!",
-          },
-        ]}
+        rules={[rules.required("Time")]}
       >
         <TimePicker
           format={formatHourMinute}

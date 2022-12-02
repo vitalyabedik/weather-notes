@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { Grid, Row, Col, Typography, Tag, Image } from "antd";
+
 import styles from "./TodayForecast.module.scss";
 
 import getWeatherIcon from "../../utils/getWeatherIcon";

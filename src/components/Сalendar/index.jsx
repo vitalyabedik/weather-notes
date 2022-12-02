@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
-import { CalendarOutlined, FileDoneOutlined } from "@ant-design/icons";
 
+import { CalendarOutlined, FileDoneOutlined } from "@ant-design/icons";
 import { Row, Col, Button } from "antd";
+
 import styles from "./Calendar.module.scss";
 
 import { MyModal, MyCalendar } from "../UI";

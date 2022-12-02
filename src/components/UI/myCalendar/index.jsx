@@ -1,36 +1,32 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
-import { Calendar } from "antd";
+import { Calendar, Badge } from "antd";
 
 import {
-  formatCalendarYearMonthDay,
-  setCalendarDate,
-  setCurrentTime,
-  weekDaysNumberFormat,
-  weekDaysNameFormat,
+  formatCalendarDayMonthYear,
+  setFormat,
 } from "../../../utils/formatData/formatTimeAndDate";
 
 const MyCalendar = () => {
-  const calendarDate = setCalendarDate();
-  const currentCalendarDate = setCurrentTime(calendarDate);
+  const notes = useSelector((store) => store.notes);
 
-  const [value, setValue] = useState(currentCalendarDate);
-
-  const [selectedValue, setSelectedValue] = useState(currentCalendarDate);
-
-  const onSelect = (newValue) => {
-    setValue(newValue);
-    setSelectedValue(newValue);
-    console.log(selectedValue.format(formatCalendarYearMonthDay));
+  const dateCellRender = (value) => {
+    const formatedDate = setFormat(value, formatCalendarDayMonthYear);
+    const currentDayEvents = [...notes].filter(
+      (event) => event.date === formatedDate
+    );
+    return (
+      <ul className="events">
+        {currentDayEvents.map((item) => (
+          <li key={item.id}>
+            <Badge status="processing" text={item.text} />
+          </li>
+        ))}
+      </ul>
+    );
   };
 
-  const onPanelChange = (newValue) => {
-    setValue(newValue.i);
-  };
-
-  return (
-    <Calendar value={value} onSelect={onSelect} onPanelChange={onPanelChange} />
-  );
+  return <Calendar dateCellRender={dateCellRender} />;
 };
 
 export default MyCalendar;

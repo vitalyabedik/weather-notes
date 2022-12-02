@@ -9,20 +9,18 @@ import useActions from "../../hooks/useActions";
 
 const Note = () => {
   const { isOpenNote } = useSelector((state) => state.app);
-  const notes = useSelector((store) => store.notes);
-
   const { closeNote } = useActions();
 
   return (
     <MyModal title="Event Form" open={isOpenNote} onCancel={closeNote}>
-      <Divider plain>Note item</Divider>
+      <Divider plain>Note creator</Divider>
       <NoteForm />
-      <Divider plain>Notes list</Divider>
-      <NoteList notes={notes} />
+      <Divider plain>Today notes</Divider>
+      <NoteList />
       <Row align="center">
         <Col>
           {" "}
-          <Button type="primary" onClick={() => closeNote()}>
+          <Button type="primary" onClick={closeNote}>
             Accept
           </Button>
         </Col>
