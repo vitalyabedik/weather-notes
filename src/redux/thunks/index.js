@@ -59,8 +59,7 @@ export const getWeatherForecastByCityName =
     }
   };
 
-// !!!
-export const getWeatherStormGlass =
+export const getWeatherForecastStormGlass =
   (lat, lon) =>
   async (dispatch, _, { stormGlassAPI }) => {
     dispatch(setWeatherLoading());

@@ -31,9 +31,10 @@ const AppLayout = () => {
   const locationError = useSelector((state) => state.location.error);
 
   const {
+    setWeatherLoading,
     getLocationInfoByCoordinates,
     getWeatherForecastByCoordinates,
-    getWeatherStormGlass,
+    getWeatherForecastStormGlass,
   } = useActions();
 
   const { lat, lon } = currentCoordinates;
@@ -68,6 +69,7 @@ const AppLayout = () => {
 
   useEffect(() => {
     if (currentCoordinates) {
+      setWeatherLoading();
       getLocationInfoByCoordinates(lat, lon);
       getWeatherForecastByCoordinates(lat, lon);
     }
@@ -75,9 +77,9 @@ const AppLayout = () => {
 
   useEffect(() => {
     if (!hourlyStormGlass && !isBasicAPI) {
-      getWeatherStormGlass(lat, lon);
+      getWeatherForecastStormGlass(lat, lon);
     }
-  }, [isBasicAPI]);
+  }, [isBasicAPI, lat, lon]);
 
   return (
     <>

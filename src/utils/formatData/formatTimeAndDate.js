@@ -15,6 +15,7 @@ export const convertTimestamp = (timestamp) => moment.unix(timestamp);
 export const convertToTimestamp = (value) => moment(value).unix();
 
 export const setCurrentTime = (value) => moment(value);
+export const getCurrentTimestamp = () => moment().valueOf();
 export const getCurrentTime = (value) => moment(value).format(formatHourMinute); //
 export const getCurrentTimeUTC = (value, format) =>
   moment(value).utc().format(format);

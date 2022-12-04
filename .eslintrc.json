@@ -6,6 +6,7 @@
   "extends": [ "eslint:recommended", "plugin:react/recommended", "airbnb", "prettier", "plugin:react/jsx-runtime"],
   "overrides": [],
   "parserOptions": {
+    "ecmaVersion": 2022,
     "ecmaFeatures": {
       "jsx": true
     }

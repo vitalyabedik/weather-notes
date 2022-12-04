@@ -10,6 +10,7 @@ import {
   getCurrentTime,
   setFormat,
   formatCalendarDayMonthYear,
+  getCurrentTimestamp,
 } from "../../utils/formatData/formatTimeAndDate";
 import rules from "../../utils/rules";
 import useActions from "../../hooks/useActions";
@@ -35,7 +36,7 @@ const NoteForm = () => {
 
   const submitForm = () => {
     addNote({
-      id: Date.now(),
+      id: getCurrentTimestamp(),
       date: selectedDate,
       time: selectedTime,
       text,
