@@ -1,6 +1,7 @@
 {
   "name": "weather-test",
   "version": "0.1.0",
+  "homepage": "https://vitalyabedik.github.io/weather-test/",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -24,10 +25,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "deploy": "npm run build && npm run build-gh-pages",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build-gh-pages": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -50,6 +53,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "prettier": "2.7.1",
     "sass": "^1.55.0"
   }

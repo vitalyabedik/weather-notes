@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 import { Grid, Space, Col, Row, Form, Input, Button } from "antd";
@@ -8,6 +8,7 @@ import styles from "./Header.module.scss";
 
 import { MySwitch } from "../UI";
 import Calendar from "../Сalendar";
+import { selectAllWeatherData } from "../../redux/selectors/weatherSelectors";
 import useActions from "../../hooks/useActions";
 
 const { useBreakpoint } = Grid;
@@ -18,14 +19,19 @@ const Header = () => {
 
   const [form] = Form.useForm();
 
-  const { isDailyForecast, isBasicAPI } = useSelector((store) => store.app);
-  const [city, setCity] = useState("");
-
   const {
     getWeatherForecastByCityName,
     changeOptionForecast,
     changeOptionAPI,
+    getWeatherForecastStormGlass,
+    getWeatherForecastStormGlassByCityName,
   } = useActions();
+
+  const { isDailyForecast, isBasicAPI } = useSelector((store) => store.app);
+  const { lat, lon } = useSelector((state) => state.location.data[0]);
+  const { hourlyStormGlass } = useSelector(selectAllWeatherData);
+
+  const [city, setCity] = useState("");
 
   const changeHandler = (e) => {
     setCity(e.target.value);
@@ -43,6 +49,15 @@ const Header = () => {
   const handleChangeAPI = () => {
     changeOptionAPI(!isBasicAPI);
   };
+
+  // useEffect(() => {
+  //   // if (!hourlyStormGlass && !isBasicAPI) {
+  //   if (!hourlyStormGlass && !isBasicAPI) {
+  //     console.log(lat, lon);
+  //     getWeatherForecastStormGlass(lat, lon);
+  //     // getWeatherForecastStormGlassByCityName(city);
+  //   }
+  // }, [isBasicAPI]);
 
   return (
     <div className={styles.header}>

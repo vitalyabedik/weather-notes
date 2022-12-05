@@ -70,3 +70,19 @@ export const getWeatherForecastStormGlass =
       dispatch(setWeatherError(error.message));
     }
   };
+
+export const getWeatherForecastStormGlassByCityName =
+  (city) =>
+  async (dispatch, _, { stormGlassAPI }) => {
+    try {
+      const response = await stormGlassAPI.getCoordinatesByCity(city);
+      const locationData = dispatch(setLocation(response.data));
+      const { lat, lon } = locationData.payload[0];
+      dispatch(getWeatherForecastStormGlass(lat, lon));
+    } catch (e) {
+      dispatch({
+        type: SET_WEATHER_ERROR,
+        payload: "Please, enter correct city name!",
+      });
+    }
+  };
