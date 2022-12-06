@@ -1,0 +1,24 @@
+.hourlyForecast {
+  position: relative;
+
+  &__button-left {
+    position: absolute;
+    top: 50%;
+    background: none;
+    border: none;
+    color: var(--text-color-white);
+  }
+
+  &__button-right {
+    position: absolute;
+    top: 50%;
+    background: none;
+    border: none;
+    color: var(--text-color-white);
+    right: 1%;
+  }
+
+  &__button-icon {
+    font-size: 2.6rem;
+  }
+}

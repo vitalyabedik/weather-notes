@@ -1,0 +1,16 @@
+.header {
+  background-color: var(--background-color-container-gray);
+  padding: 1.6rem;
+
+  &__form {
+    display: flex;
+  }
+
+  &__items-center {
+    text-align: center;
+  }
+
+  &__items-right {
+    text-align: right;
+  }
+}

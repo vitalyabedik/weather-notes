@@ -1,0 +1,17 @@
+.wrapper {
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 1.6rem;
+}
+
+.loader {
+  background-color: var(--background-color-loader);
+  height: 100vh;
+}
