@@ -1,7 +1,7 @@
 {
   "name": "weather-test",
   "version": "0.1.0",
-  "homepage": "https://vitalyabedik.github.io/weather-test/",
+  "homepage": "http://vitalyabedik.github.io/weather-test/",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
@@ -24,8 +24,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
     "deploy": "npm run build && npm run build-gh-pages",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
