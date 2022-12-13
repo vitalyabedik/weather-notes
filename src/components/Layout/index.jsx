@@ -7,8 +7,8 @@ import styles from "./AppLayout.module.scss";
 
 import Header from "../Header";
 import CurrentInfo from "../CurrentInfo";
-import Weather from "../Weather";
 import CurrentEvent from "../CurrentEvent";
+import Weather from "../Weather";
 import { MyAlert, MyLoader } from "../UI";
 import getWeatherBackground from "../../utils/getWeatherBackground";
 import useActions from "../../hooks/useActions";
@@ -104,7 +104,9 @@ const AppLayout = () => {
         currentOpenWeather && (
           <div
             className={styles.wrapper}
-            style={{ backgroundImage: `url(${layoutBackground})` }}
+            style={{
+              backgroundImage: `url(${layoutBackground})`,
+            }}
           >
             <div className={styles.container}>
               <div>

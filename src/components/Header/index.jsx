@@ -28,8 +28,8 @@ const Header = () => {
   } = useActions();
 
   const { isDailyForecast, isBasicAPI } = useSelector((store) => store.app);
-  const { lat, lon } = useSelector((state) => state.location.data[0]);
-  const { hourlyStormGlass } = useSelector(selectAllWeatherData);
+  // const { lat, lon } = useSelector((state) => state.location.data[0]);
+  // const { hourlyStormGlass } = useSelector(selectAllWeatherData);
 
   const [city, setCity] = useState("");
 

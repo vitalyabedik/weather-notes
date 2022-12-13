@@ -39,20 +39,20 @@ const HourlyForecast = () => {
 
   const currentDayHoursStormGlass = hourlyStormGlass?.filter(
     (item) =>
-      getCurrentTimeUTC(item.time, formatDateMonth) ===
+      getCurrentTimeUTC(item?.time, formatDateMonth) ===
         setFormat(nowDay, formatDateMonth) &&
-      setFormat(nowDay, formatHour) <= getCurrentTimeUTC(item.time, formatHour)
+      setFormat(nowDay, formatHour) <= getCurrentTimeUTC(item?.time, formatHour)
   );
 
   const hoursStormGlass = currentDayHoursStormGlass?.map((item) => ({
-    id: convertToTimestamp(item.time),
-    time: getCurrentTimeUTC(item.time, formatHourMinute),
-    temperature: roundNumAndRemoveNegativeZero(item.airTemperature.sg),
+    id: convertToTimestamp(item?.time),
+    time: getCurrentTimeUTC(item?.time, formatHourMinute),
+    temperature: roundNumAndRemoveNegativeZero(item?.airTemperature.sg),
   }));
 
   const hoursOpenWeather = currentDayHoursOpenWeather?.map((item) => ({
-    id: item.dt,
-    time: setFormat(convertTimestamp(item.dt), formatHourMinute),
+    id: item?.dt,
+    time: setFormat(convertTimestamp(item?.dt), formatHourMinute),
     icon: getWeatherIcon(item?.weather?.[0]?.icon),
     temperature: roundNumAndRemoveNegativeZero(item?.temp),
   }));
@@ -61,17 +61,17 @@ const HourlyForecast = () => {
     ? hoursOpenWeather
     : changeTemperature(hoursOpenWeather, hoursStormGlass);
 
-  const currentHours = hours.slice(firstElement, lastElement);
+  const currentHours = hours?.slice(firstElement, lastElement);
 
   return (
     <>
       <Row className={styles.hourlyForecast} justify="space-around">
-        {currentHours.map((item) => (
+        {currentHours?.map((item) => (
           <Col xs={8} sm={8} md={4} key={item.id}>
             <ItemForecast
-              info={item.time}
-              icon={item.icon}
-              temperature={item.temperature}
+              info={item?.time}
+              icon={item?.icon}
+              temperature={item?.temperature}
             />
           </Col>
         ))}

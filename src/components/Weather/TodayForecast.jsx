@@ -33,7 +33,7 @@ const TodayForecast = () => {
         <Row>
           <Col span={24}>
             <Image
-              src={todayWeather.icon}
+              src={todayWeather?.icon}
               width={55}
               alt="example"
               preview={false}
@@ -48,7 +48,7 @@ const TodayForecast = () => {
           <Col span={24}>
             {" "}
             <Text className={styles[`ant-typography`]} strong>
-              {todayWeather.temperature}&deg;
+              {todayWeather?.temperature}&deg;
             </Text>
           </Col>
         </Row>

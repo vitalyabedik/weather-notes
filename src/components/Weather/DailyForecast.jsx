@@ -15,8 +15,8 @@ const DailyForecast = () => {
   const { dailyOpenWeather } = useSelector(selectAllWeatherData);
 
   const days = dailyOpenWeather?.slice(1, 7)?.map((item) => ({
-    id: item.dt,
-    name: setFormat(convertTimestamp(item.dt), formatWeekday),
+    id: item?.dt,
+    name: setFormat(convertTimestamp(item?.dt), formatWeekday),
     icon: getWeatherIcon(item?.weather?.[0]?.icon),
     temperature: item?.temp?.day.toFixed(),
   }));

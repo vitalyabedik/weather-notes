@@ -27,7 +27,7 @@ const TodayInfo = () => {
     setInterval(() => {
       setTime(setFormat(moment(), formatHourMinute));
     }, 1000);
-  });
+  }, [time]);
 
   return (
     <div className={styles.todayInfo}>
