@@ -1,7 +1,7 @@
 {
-  "name": "weather-test",
+  "name": "weather-notes",
   "version": "0.1.0",
-  "homepage": "EmGIdQuhtqjRNI9A43idHv3E4KltCTsPsLxvdaubFHSYwY://vitalyabedik.github.io/weather-test/",
+  "homepage": "https://vitalyabedik.github.io/weather-notes/",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
